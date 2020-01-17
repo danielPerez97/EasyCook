@@ -1,0 +1,3 @@
+rootProject.name='Easy Cook'
+include ':app'
+include ':database'

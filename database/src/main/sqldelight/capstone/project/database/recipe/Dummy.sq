@@ -1,0 +1,13 @@
+
+-- Simple table creation, there should be a type generated called Dummy
+CREATE TABLE dummy(
+    _id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL
+);
+
+-- Making methods example
+selectAll:
+SELECT * FROM dummy;
+
+insert:
+INSERT OR REPLACE INTO dummy(name) VALUES (?);
