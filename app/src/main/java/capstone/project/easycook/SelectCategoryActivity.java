@@ -1,10 +1,12 @@
 package capstone.project.easycook;
 
-import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import daniel.perez.easycook.R;
 import daniel.perez.easycook.databinding.ActivitySelectCategoryBinding;
@@ -24,25 +26,30 @@ public class SelectCategoryActivity extends AppCompatActivity
         binding.breakfastIv.setOnClickListener(v ->
         {
             toast(v);
+            startRecipeList();
         });
         binding.lunchIv.setOnClickListener(v ->
         {
             toast(v);
+            startRecipeList();
         });
 
         binding.dinnerIv.setOnClickListener(v ->
         {
             toast(v);
+            startRecipeList();
         });
 
         binding.dessertsIv.setOnClickListener(v ->
         {
             toast(v);
+            startRecipeList();
         });
 
         binding.addRecipeBtn.setOnClickListener(v ->
         {
             toast(v);
+            startRecipeList();
         });
     }
 
@@ -80,6 +87,12 @@ public class SelectCategoryActivity extends AppCompatActivity
             }
             break;
         }
+    }
+
+    private void startRecipeList()
+    {
+        Intent intent = new Intent(this, RecipeListActivity.class);
+        startActivity(intent);
     }
 
 
