@@ -1,8 +1,9 @@
-package capstone.project.easycook
+package capstone.project.easycook.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import capstone.project.easycook.model.ViewRecipe
 import daniel.perez.easycook.databinding.RecipeEntryBinding
 
 class RecipeListAdapter: RecyclerView.Adapter<RecipeListAdapter.ViewHolder>()
@@ -14,7 +15,9 @@ class RecipeListAdapter: RecyclerView.Adapter<RecipeListAdapter.ViewHolder>()
     {
         val inflater = LayoutInflater.from(parent.context)
         val binding = RecipeEntryBinding.inflate(inflater, parent, false)
-        return ViewHolder(binding)
+        return ViewHolder(
+            binding
+        )
     }
 
     // Binds data from the data set into the entry

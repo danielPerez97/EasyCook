@@ -1,4 +1,4 @@
-package capstone.project.easycook;
+package capstone.project.easycook.view;
 
 
 import android.content.Intent;

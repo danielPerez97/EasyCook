@@ -1,9 +1,13 @@
-package capstone.project.easycook
+package capstone.project.easycook.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import capstone.project.easycook.view.adapter.RecipeListAdapter
+import capstone.project.easycook.model.ViewRecipe
+import capstone.project.easycook.viewmodel.RecipeListViewModel
 import daniel.perez.easycook.databinding.ActivityRecipeListBinding
 
 class RecipeListActivity : AppCompatActivity() {
@@ -11,11 +15,13 @@ class RecipeListActivity : AppCompatActivity() {
     private lateinit var viewAdapter: RecipeListAdapter
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var binding: ActivityRecipeListBinding
+    private lateinit var viewModel: RecipeListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRecipeListBinding.inflate(this.layoutInflater)
         setContentView(binding.root)
+//        viewModel = ViewModelProviders.of
 
         viewManager = LinearLayoutManager(this)
         viewAdapter = RecipeListAdapter()
@@ -34,17 +40,6 @@ class RecipeListActivity : AppCompatActivity() {
             adapter = viewAdapter
         }
 
-        viewAdapter.setData(listOf(
-            ViewRecipe("fjdklsafdsajk"),
-            ViewRecipe("fjdklsafdsajk"),
-            ViewRecipe("fjdklsfdsaajk"),
-            ViewRecipe("fjdklsfdsafajk"),
-            ViewRecipe("fjdklsajk"),
-            ViewRecipe("fjdklsfdsaajk"),
-            ViewRecipe("fjdklsfdsaajk"),
-            ViewRecipe("fjdklsfdsafdsajk"),
-            ViewRecipe("fjdklsfdsaajk"),
-            ViewRecipe("fjdklsajfdsafk")
-            ))
+        viewAdapter.setData(viewModel.getRecipes())
     }
 }

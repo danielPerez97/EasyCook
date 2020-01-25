@@ -1,7 +1,7 @@
 // Skeleton Injector that we define but Dagger will fill in for us
 package capstone.project.easycook.di;
 
-import capstone.project.easycook.MainActivity;
+import capstone.project.easycook.view.MainActivity;
 
 import javax.inject.Singleton;
 import dagger.Component;
