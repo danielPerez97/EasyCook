@@ -1,8 +1,10 @@
+import capstone.project.database.Category;
+
 
 CREATE TABLE recipe(
     _id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT UNIQUE NOT NULL,
-    category TEXT NOT NULL,
+    category TEXT AS Category NOT NULL,
     description TEXT NOT NULL,
     time_estimate INTEGER NOT NULL,
     is_main INTEGER NOT NULL

@@ -18,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestApp
 {
+    private Database database;
     private SqlDriver driver;
     private RecipeQueries recipeQueries;
     private StepsQueries  stepsQueries;
@@ -30,10 +31,11 @@ public class TestApp
         driver = new JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY, new Properties());
         Database.Companion.getSchema().create(driver);
 
-        recipeQueries = Database.Companion.invoke(driver).getRecipeQueries();
-        stepsQueries  = Database.Companion.invoke(driver).getStepsQueries();
-        ingredientQueries = Database.Companion.invoke(driver).getIngredientQueries();
-        ingredientRecipeQueries = Database.Companion.invoke(driver).getIngredientRecipeQueries();
+        database = Database.Companion.invoke( driver, new Recipe.Adapter( CategorySchema.categoryAdapter() ) );
+        recipeQueries = database.getRecipeQueries();
+        stepsQueries  = database.getStepsQueries();
+        ingredientQueries = database.getIngredientQueries();
+        ingredientRecipeQueries = database.getIngredientRecipeQueries();
     }
 
     @Test
@@ -41,7 +43,7 @@ public class TestApp
     {
         // TEST DATA
         String testName         = "Tacos";
-        String testCategory     = "Breakfast";
+        Category testCategory     = Category.BREAKFAST;
         String testDescription  = "This is a test recipe description";
         long testTimeEstimate   = 12000;
 
@@ -50,7 +52,7 @@ public class TestApp
         assertEquals(0, recipeQueries.selectAll().executeAsList().size());
 
         // Insertion test
-        recipeQueries.insert(testName,testCategory,testDescription,testTimeEstimate, 1);
+        recipeQueries.insert(testName, testCategory, testDescription,testTimeEstimate, 1);
 
         Recipe recipe = recipeQueries.selectByName(testName).executeAsOne();
         assertEquals(1, recipeQueries.selectAll().executeAsList().size());
@@ -71,7 +73,7 @@ public class TestApp
     {
         // TEST DATA
         String testName         = "Tacos";
-        String testCategory     = "Lunch";
+        Category testCategory     = Category.LUNCH;
         String testDescription  = "THIS IS A TEST DESCRIPTION TEXT";
         int    testTimeEstimate = 10000;
         long   testnumber       = 2000;
@@ -79,7 +81,7 @@ public class TestApp
 
 
         // Insert random recipe
-        recipeQueries.insert(testName,testCategory,testDescription,1200, 1);
+        recipeQueries.insert(testName, testCategory, testDescription,1200, 1);
         long r_id = recipeQueries.selectAll().executeAsOne().get_id();
 
 

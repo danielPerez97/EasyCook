@@ -9,6 +9,7 @@ import java.util.Properties;
 
 import capstone.project.database.recipe.Database;
 import capstone.project.database.recipe.DummyQueries;
+import capstone.project.database.recipe.Recipe;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -18,13 +19,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class TestDummy
 {
     private SqlDriver driver;
+    private Database database;
     private DummyQueries queries;
 
     TestDummy()
     {
          driver = new JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY, new Properties());
+         database = Database.Companion.invoke(driver, new Recipe.Adapter( CategorySchema.categoryAdapter() ));
          Database.Companion.getSchema().create(driver);
-         queries = Database.Companion.invoke(driver).getDummyQueries();
+         queries = database.getDummyQueries();
     }
 
 
