@@ -1,0 +1,26 @@
+
+CREATE TABLE recipe(
+    _id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT UNIQUE NOT NULL,
+    category TEXT NOT NULL,
+    description TEXT NOT NULL,
+    time_estimate INTEGER NOT NULL,
+    is_main INTEGER NOT NULL
+);
+
+-- Methods
+
+selectAll:
+SELECT * FROM recipe;
+
+selectByName:
+SELECT * FROM recipe WHERE name = ?;
+
+selectByCategory:
+SELECT * FROM recipe WHERE category = (?) AND is_main = 1;
+
+
+insert:
+INSERT OR REPLACE INTO recipe(name, category, description, time_estimate, is_main) VALUES (?,?,?,?,?);
+
+

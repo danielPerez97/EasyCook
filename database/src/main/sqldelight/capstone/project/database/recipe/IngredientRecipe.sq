@@ -1,0 +1,18 @@
+CREATE TABLE ingredientrecipe(
+    ingredient_id INTEGER,
+    recipe_id INTEGER,
+    amount INTEGER,
+    PRIMARY KEY (ingredient_id, recipe_id),
+    FOREIGN KEY (ingredient_id) REFERENCES ingredient(i_id),
+    FOREIGN KEY (recipe_id) REFERENCES recipe(_id)
+);
+
+-- Methods
+
+getIngredientAmount:
+SELECT amount FROM ingredientrecipe WHERE ingredient_id = (?) AND recipe_id = (?);
+
+insertOrReplaceSteps:
+INSERT OR REPLACE INTO ingredientrecipe(ingredient_id, recipe_id, amount) VALUES (?,?,?);
+
+

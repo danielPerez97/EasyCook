@@ -27,15 +27,5 @@ class TestDummy
          queries = Database.Companion.invoke(driver).getDummyQueries();
     }
 
-    @Test
-    void testName()
-    {
-        // There should be nothing in the database
-        assertEquals(0, queries.selectAll().executeAsList().size());
 
-        // Add something and test for it
-        queries.insert("Capstone");
-        assertEquals(1, queries.selectAll().executeAsList().size());
-        assertEquals("Capstone", queries.selectAll().executeAsOne().getName());
-    }
 }

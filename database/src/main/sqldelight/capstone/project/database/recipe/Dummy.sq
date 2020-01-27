@@ -6,8 +6,6 @@ CREATE TABLE dummy(
 );
 
 -- Making methods example
-selectAll:
-SELECT * FROM dummy;
 
 insert:
 INSERT OR REPLACE INTO dummy(name) VALUES (?);

@@ -1,0 +1,15 @@
+CREATE TABLE ingredient(
+    i_id INTEGER NOT NULL,
+    item_name TEXT,
+    PRIMARY KEY (i_id)
+);
+
+-- Methods
+
+selectIngredient:
+SELECT * FROM ingredient WHERE i_id = (?);
+
+insertOrReplaceSteps:
+INSERT OR REPLACE INTO ingredient(i_id, item_name) VALUES (?,?);
+
+

@@ -1,0 +1,19 @@
+CREATE TABLE step(
+    r_id INTEGER NOT NULL,
+    step_number INTEGER UNIQUE,
+    description TEXT,
+    sub_recipe_id INTEGER,
+    PRIMARY KEY (r_id, step_number),
+    FOREIGN KEY (r_id) REFERENCES recipe(_id),
+    FOREIGN KEY (sub_recipe_id) REFERENCES recipe(_id)
+);
+
+-- Methods
+
+selectAllRecipeSteps:
+SELECT * FROM step WHERE r_id = (?);
+
+insertOrReplaceSteps:
+INSERT OR REPLACE INTO step(r_id, step_number, description, sub_recipe_id) VALUES (?,?,?,?);
+
+
