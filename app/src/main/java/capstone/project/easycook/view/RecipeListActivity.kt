@@ -2,11 +2,11 @@ package capstone.project.easycook.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import capstone.project.easycook.view.adapter.RecipeListAdapter
-import capstone.project.easycook.model.ViewRecipe
 import capstone.project.easycook.viewmodel.RecipeListViewModel
 import daniel.perez.easycook.databinding.ActivityRecipeListBinding
 
@@ -21,7 +21,7 @@ class RecipeListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRecipeListBinding.inflate(this.layoutInflater)
         setContentView(binding.root)
-//        viewModel = ViewModelProviders.of
+        viewModel = ViewModelProvider(this).get(RecipeListViewModel::class.java)
 
         viewManager = LinearLayoutManager(this)
         viewAdapter = RecipeListAdapter()

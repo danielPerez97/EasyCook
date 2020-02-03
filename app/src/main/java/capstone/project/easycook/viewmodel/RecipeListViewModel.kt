@@ -1,8 +1,10 @@
 package capstone.project.easycook.viewmodel
 
+import androidx.lifecycle.ViewModel
 import capstone.project.easycook.model.ViewRecipe
 
-class RecipeListViewModel {
+class RecipeListViewModel: ViewModel()
+{
 
     fun getRecipes(): List<ViewRecipe>
     {
