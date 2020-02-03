@@ -32,4 +32,5 @@ task clean(type: Delete) {
 ext {
     daggerVersion = "2.25.4"
     sqlDelightVersion = "1.2.1"
+    materialComponentsVersion = "1.1.0"
 }
