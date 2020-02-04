@@ -8,12 +8,15 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import javax.inject.Inject;
+
 import daniel.perez.easycook.R;
 import daniel.perez.easycook.databinding.ActivitySelectCategoryBinding;
 
 public class SelectCategoryActivity extends AppCompatActivity
 {
 
+    @Inject String string;
     ActivitySelectCategoryBinding binding;
 
     @Override

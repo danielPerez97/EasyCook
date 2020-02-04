@@ -1,9 +1,9 @@
 // Skeleton Injector that we define but Dagger will fill in for us
 package capstone.project.easycook.di;
 
-import capstone.project.easycook.view.MainActivity;
-
 import javax.inject.Singleton;
+
+import capstone.project.easycook.view.SelectCategoryActivity;
 import dagger.Component;
 
 // This will be able to inject the string module defined in this directory
@@ -11,5 +11,5 @@ import dagger.Component;
 @Singleton
 public interface AppInjector
 {
-    public void inject(MainActivity activity);
+    public void inject(SelectCategoryActivity activity);
 }
