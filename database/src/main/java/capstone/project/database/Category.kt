@@ -4,7 +4,8 @@ package capstone.project.database
 
 import com.squareup.sqldelight.ColumnAdapter
 
-    enum class Category {
+    enum class Category
+    {
         BREAKFAST, LUNCH, DINNER, DESSERT, UNKNOWN
     }
 

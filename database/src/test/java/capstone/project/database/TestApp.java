@@ -24,6 +24,7 @@ public class TestApp
     private StepsQueries  stepsQueries;
     private IngredientQueries ingredientQueries;
     private IngredientRecipeQueries ingredientRecipeQueries;
+    RecipeBuilder builder;
 
 
     TestApp()
@@ -36,6 +37,8 @@ public class TestApp
         stepsQueries  = database.getStepsQueries();
         ingredientQueries = database.getIngredientQueries();
         ingredientRecipeQueries = database.getIngredientRecipeQueries();
+
+        builder = new RecipeBuilder(database);
     }
 
     @Test
@@ -102,7 +105,7 @@ public class TestApp
     void testIngredient()
     {
         // TEST DATA
-        int     testIngredientID    = 100000;
+        long     testIngredientID    = 100000;
         String  testItemName        = "BANANA";
 
         // Empty test

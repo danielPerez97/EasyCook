@@ -1,7 +1,6 @@
 CREATE TABLE ingredient(
-    i_id INTEGER NOT NULL,
-    item_name TEXT,
-    PRIMARY KEY (i_id)
+    i_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    item_name TEXT
 );
 
 -- Methods
