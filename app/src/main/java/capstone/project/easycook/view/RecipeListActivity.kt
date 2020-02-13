@@ -1,27 +1,33 @@
 package capstone.project.easycook.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import capstone.project.easycook.BaseApplication
+import capstone.project.easycook.di.viewmodel.ViewModelFactory
 import capstone.project.easycook.view.adapter.RecipeListAdapter
 import capstone.project.easycook.viewmodel.RecipeListViewModel
 import daniel.perez.easycook.databinding.ActivityRecipeListBinding
+import javax.inject.Inject
 
-class RecipeListActivity : AppCompatActivity() {
+class RecipeListActivity : AppCompatActivity()
+{
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecipeListAdapter
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var binding: ActivityRecipeListBinding
     private lateinit var viewModel: RecipeListViewModel
+    @Inject lateinit var factory: ViewModelFactory
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
+        (application as BaseApplication).injector().inject(this)
         super.onCreate(savedInstanceState)
         binding = ActivityRecipeListBinding.inflate(this.layoutInflater)
         setContentView(binding.root)
-        viewModel = ViewModelProvider(this).get(RecipeListViewModel::class.java)
+        viewModel = ViewModelProvider(this, factory).get(RecipeListViewModel::class.java)
 
         viewManager = LinearLayoutManager(this)
         viewAdapter = RecipeListAdapter()

@@ -3,6 +3,7 @@ package capstone.project.easycook;
 import android.app.Application;
 
 import capstone.project.easycook.di.AppInjector;
+import capstone.project.easycook.di.AppModule;
 import capstone.project.easycook.di.DaggerAppInjector;
 
 public class BaseApplication extends Application
@@ -13,7 +14,9 @@ public class BaseApplication extends Application
     public void onCreate()
     {
         super.onCreate();
-        injector = DaggerAppInjector.create();
+        injector = DaggerAppInjector.builder()
+                .appModule( new AppModule( getApplicationContext() ) )
+                .build();
     }
 
     public AppInjector injector()
