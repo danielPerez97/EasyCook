@@ -7,9 +7,7 @@ import java.util.Objects;
 import java.util.Random;
 
 import capstone.project.database.recipe.Database;
-import capstone.project.database.recipe.Ingredient;
 import capstone.project.database.recipe.Recipe;
-import capstone.project.database.recipe.Step;
 
 // Here's a helpful article on the Builder pattern to give you an idea. You shouldn't have to make
 // a nested class like the example they use here, RecipeBuilder would be the inner Builder class they
@@ -64,52 +62,66 @@ public class RecipeBuilder  implements IRecipeBuilder
     public RecipeBuilder name(String name)
     {
         this.name = name;
-        return null;
+        return this;
     }
 
     @Override
     public RecipeBuilder description(String description)
     {
         this.recipeDescription = description;
-        return null;
+        return this;
     }
 
     @Override
     public RecipeBuilder category(Category category)
     {
         this.category = category;
-        return null;
+        return this;
     }
 
     public RecipeBuilder addIngredient(String ingredient, int ingredientQuantity)
     {
-        Random rand = new Random();
+        Ingredient currentIngrendient = new Ingredient(ingredient, ingredientQuantity);
 
-        long id = rand.nextInt(2000);
+        ingredients.add(currentIngrendient);
 
-        // How to skip the implementation asking for ID?
-        Ingredient currrentIngredient = new Ingredient.Impl(id, ingredient);
-
-        ingredients.add(currrentIngredient);
-
-        return  null;
+        return this;
     }
 
     @Override
     public RecipeBuilder addStep(Long stepNumber, String stepDescription)
     {
+        Step currentStep = new Step(stepNumber, stepDescription);
 
+        steps.add(currentStep);
 
-        return null;
+        return this;
     }
 
     @Override
-    public RecipeBuilder addStep(Long stepNumber, String stepDescription, Long optionalRecipeId) {
-        return null;
+    public RecipeBuilder addStep(Long stepNumber, String stepDescription, Long optionalRecipeId)
+    {
+        Step currentStep = new Step(stepNumber, stepDescription, optionalRecipeId);
+
+        steps.add(currentStep);
+
+        return this;
     }
 
     @Override
-    public Recipe insertOrUpdate() {
+    public Recipe insertOrUpdate()
+    {
+        Objects.requireNonNull(name, "name is null");
+
+        if (category == null) { category = Category.UNKNOWN; }
+
+
+        //database.getIngredientQueries().insertOrReplaceSteps();
+
         return null;
     }
+
+
+
+
 }
