@@ -10,18 +10,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import javax.inject.Inject;
 
+import capstone.project.easycook.BaseApplication;
 import daniel.perez.easycook.R;
 import daniel.perez.easycook.databinding.ActivitySelectCategoryBinding;
 
 public class SelectCategoryActivity extends AppCompatActivity
 {
 
-    @Inject String string;
     ActivitySelectCategoryBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        ((BaseApplication) getApplication()).injector().inject(this);
         super.onCreate(savedInstanceState);
         binding = ActivitySelectCategoryBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
