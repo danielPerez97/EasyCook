@@ -7,25 +7,33 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
 import capstone.project.easycook.BaseApplication;
+import capstone.project.easycook.di.viewmodel.ViewModelFactory;
+import capstone.project.easycook.model.ViewRecipe;
+import capstone.project.easycook.viewmodel.SelectCategoryViewModel;
 import daniel.perez.easycook.R;
 import daniel.perez.easycook.databinding.ActivitySelectCategoryBinding;
 
 public class SelectCategoryActivity extends AppCompatActivity
 {
 
+    @Inject ViewModelFactory factory;
+    SelectCategoryViewModel viewModel;
     ActivitySelectCategoryBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        ((BaseApplication) getApplication()).injector().inject(this);
         super.onCreate(savedInstanceState);
         binding = ActivitySelectCategoryBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        viewModel = new ViewModelProvider(this, factory).get(SelectCategoryViewModel.class);
 
         binding.breakfastIv.setOnClickListener(v ->
         {

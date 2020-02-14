@@ -4,6 +4,9 @@ package capstone.project.easycook.di;
 import javax.inject.Singleton;
 
 import capstone.project.easycook.di.viewmodel.ViewModelModule;
+import capstone.project.easycook.view.CookRecipeActivity;
+import capstone.project.easycook.view.CreateRecipeActivity;
+import capstone.project.easycook.view.RecipeActivity;
 import capstone.project.easycook.view.RecipeListActivity;
 import capstone.project.easycook.view.SelectCategoryActivity;
 import dagger.Component;
@@ -13,6 +16,9 @@ import dagger.Component;
 @Singleton
 public interface AppInjector
 {
-    public void inject(SelectCategoryActivity activity);
-    public void inject(RecipeListActivity activity);
+    void inject(SelectCategoryActivity activity);
+    void inject(RecipeListActivity activity);
+    void inject(CookRecipeActivity activity);
+    void inject(CreateRecipeActivity activity);
+    void inject(RecipeActivity activity);
 }
