@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import capstone.project.easycook.BaseApplication
 import capstone.project.easycook.di.viewmodel.ViewModelFactory
+import capstone.project.easycook.injector
 import capstone.project.easycook.view.adapter.RecipeListAdapter
 import capstone.project.easycook.viewmodel.RecipeListViewModel
 import daniel.perez.easycook.databinding.ActivityRecipeListBinding
@@ -23,7 +23,7 @@ class RecipeListActivity : AppCompatActivity()
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
-        (application as BaseApplication).injector().inject(this)
+        injector().inject(this)
         super.onCreate(savedInstanceState)
         binding = ActivityRecipeListBinding.inflate(this.layoutInflater)
         setContentView(binding.root)
