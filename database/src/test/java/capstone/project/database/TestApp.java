@@ -24,7 +24,7 @@ public class TestApp
     private StepsQueries  stepsQueries;
     private IngredientQueries ingredientQueries;
     private IngredientRecipeQueries ingredientRecipeQueries;
-    RecipeBuilder builder;
+    IRecipeBuilder builder;
 
 
     TestApp()
