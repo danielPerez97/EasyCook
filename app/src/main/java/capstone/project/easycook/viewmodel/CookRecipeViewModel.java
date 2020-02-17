@@ -6,13 +6,16 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import capstone.project.database.recipe.Database;
 import capstone.project.easycook.model.ViewRecipe;
 
 public class CookRecipeViewModel extends ViewModel
 {
-    @Inject
-    CookRecipeViewModel(List<ViewRecipe> recipes)
-    {
+    private Database database;
 
+    @Inject
+    CookRecipeViewModel(Database database)
+    {
+        this.database = database;
     }
 }
