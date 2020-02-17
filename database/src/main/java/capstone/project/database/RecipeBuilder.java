@@ -5,6 +5,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
+import java.util.function.Consumer;
 
 import capstone.project.database.recipe.Database;
 import capstone.project.database.recipe.Recipe;
@@ -24,14 +25,14 @@ public class RecipeBuilder  implements IRecipeBuilder
     private  Category category;
     private  String recipeDescription;
     private  int    timeEstimate;
-    private  boolean isMain;
+    private  long isMain;
 
-    private int stepNumber;
+    private long stepNumber;
     private String stepDescription;
-    private int subRecipeID;
+    private long subRecipeID;
 
 
-    private int ingredientID;
+    private long ingredientID;
     private String ingredient;
     private  int ingredientQuantity;
 
@@ -47,7 +48,7 @@ public class RecipeBuilder  implements IRecipeBuilder
         category = null;
         recipeDescription = "";
         timeEstimate = 0;
-        isMain = false;
+        isMain = 0;
 
         ingredients = new ArrayList<Ingredient>();
         steps = new ArrayList<Step>();
@@ -109,19 +110,39 @@ public class RecipeBuilder  implements IRecipeBuilder
     }
 
     @Override
+    public RecipeBuilder main(boolean isMain)
+    {
+        Objects.requireNonNull(isMain);
+
+        if(isMain == false)
+            this.isMain = 0;
+        else
+            this.isMain = 1;
+        return this;
+    }
+
+    @Override
     public Recipe insertOrUpdate()
     {
         Objects.requireNonNull(name, "name is null");
+        Objects.requireNonNull(isMain, "isMain is null");
 
         if (category == null) { category = Category.UNKNOWN; }
 
+        database.getRecipeQueries().insert(name, category, recipeDescription, isMain);
 
-        //database.getIngredientQueries().insertOrReplaceSteps();
+        final Recipe recipe = database.getRecipeQueries().selectByName(name).executeAsOne();
 
-        return null;
+        ingredients.forEach( ingredient -> {
+            database.getIngredientQueries().insertOrReplace(ingredient.getName());
+            final capstone.project.database.recipe.Ingredient dbIngredient = database.getIngredientQueries().selectByName(ingredient.getName()).executeAsOne();
+            database.getIngredientRecipeQueries().insert(ingredient.getId(), recipe.get_id(), ingredient.getAmount().longValue());
+        });
+
+        steps.forEach( step -> {
+           database.getStepsQueries().insertOrReplaceSteps(recipe_id, stepNumber, stepDescription, subRecipeID);
+        });
+
+        return recipe;
     }
-
-
-
-
 }

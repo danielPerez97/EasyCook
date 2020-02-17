@@ -5,9 +5,9 @@ CREATE TABLE recipe(
     _id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT UNIQUE NOT NULL,
     category TEXT AS Category NOT NULL,
-    description TEXT NOT NULL,
-    time_estimate INTEGER NOT NULL,
-    is_main INTEGER NOT NULL
+    description TEXT,
+    time_estimate INTEGER,
+    is_main INTEGER
 );
 
 -- Methods
@@ -21,8 +21,13 @@ SELECT * FROM recipe WHERE name = ?;
 selectByCategory:
 SELECT * FROM recipe WHERE category = (?) AND is_main = 1;
 
-
 insert:
-INSERT OR REPLACE INTO recipe(name, category, description, time_estimate, is_main) VALUES (?,?,?,?,?);
+INSERT OR REPLACE INTO recipe(name, category, description, is_main) VALUES (?,?,?,?);
 
+insertAll:
+INSERT OR REPLACE INTO recipe(name, category, description, time_estimate,is_main) VALUES (?,?,?,?,?);
 
+-- Gets ALL the ingredients that belong to a recipe
+getIngredients:
+SELECT * FROM ingredientrecipe JOIN ingredient ON ingredientrecipe.ingredient_id = ingredient_id
+WHERE ingredientrecipe.recipe_id IS (?);

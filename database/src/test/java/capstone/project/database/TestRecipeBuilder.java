@@ -12,10 +12,12 @@ import java.util.Objects;
 import java.util.Properties;
 
 import capstone.project.database.recipe.Database;
+import capstone.project.database.recipe.GetIngredients;
 import capstone.project.database.recipe.Ingredient;
 import capstone.project.database.recipe.IngredientQueries;
 import capstone.project.database.recipe.IngredientRecipeQueries;
 import capstone.project.database.recipe.Recipe;
+import capstone.project.database.recipe.RecipeQueries;
 import capstone.project.database.recipe.Step;
 import capstone.project.database.recipe.StepsQueries;
 
@@ -51,18 +53,23 @@ public class TestRecipeBuilder
     public void testBoiledEggs()
     {
         IngredientQueries ingQueries = database.getIngredientQueries();
-        IngredientRecipeQueries ingredientRecipeQueries = database.getIngredientRecipeQueries();
+        RecipeQueries recipeQueries = database.getRecipeQueries();
         StepsQueries stepsQueries = database.getStepsQueries();
 
         // Boiled eggs is returning null at the moment. Gather all the steps and ingredients that belong to the recipe.
         System.out.println(boiledEggs);
         List<Step> steps = stepsQueries.selectAllRecipeSteps(boiledEggs.get_id()).executeAsList();
-        List<Ingredient> ingredients = Collections.emptyList(); // ingredientQueries.selectAllRecipeIngredients(boiledEggs.get_id()).executeAsList();
+        List<GetIngredients> ingredients = recipeQueries.getIngredients(boiledEggs.get_id()).executeAsList();
 
         assertEquals("Boiled Eggs", boiledEggs.getName());
         assertEquals("Sick Boiled Eggs", boiledEggs.getDescription());
         assertEquals( Category.BREAKFAST, boiledEggs.getCategory() );
-        steps.forEach(step -> assertTrue( Objects.equals(step.getDescription(), "Acquire eggs") || Objects.equals(step.getDescription(), "Boil the eggs")));
+
+        assertTrue(ingredients.size() >= 1);
         ingredients.forEach(ingredient -> assertTrue( Objects.equals(ingredient.getItem_name(), "Eggs") || Objects.equals(ingredient.getItem_name(), "Water")));
+
+
+        assertTrue(steps.size() >= 1);
+        steps.forEach(step -> assertTrue( Objects.equals(step.getDescription(), "Acquire eggs") || Objects.equals(step.getDescription(), "Boil the eggs")));
     }
 }
