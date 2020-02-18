@@ -1,22 +1,14 @@
 package capstone.project.database;
 
-import org.jetbrains.annotations.Nullable;
-
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.Random;
-import java.util.function.Consumer;
 
 import capstone.project.database.recipe.Database;
 import capstone.project.database.recipe.Recipe;
 
-// Here's a helpful article on the Builder pattern to give you an idea. You shouldn't have to make
-// a nested class like the example they use here, RecipeBuilder would be the inner Builder class they
-// use in their example
-// http://www.informit.com/articles/article.aspx?p=1216151&seqNum=2
 
-
-public class RecipeBuilder  implements IRecipeBuilder
+@SuppressWarnings("WeakerAccess")
+public class RecipeBuilder implements IRecipeBuilder
 {
     Database database;
 
@@ -50,8 +42,8 @@ public class RecipeBuilder  implements IRecipeBuilder
         timeEstimate = 0;
         isMain = null;
 
-        ingredients = new ArrayList<Ingredient>();
-        steps = new ArrayList<Step>();
+        ingredients = new ArrayList<>();
+        steps = new ArrayList<>();
 
 
         // Use this method! It will cover you and provides a useful error.
@@ -134,11 +126,12 @@ public class RecipeBuilder  implements IRecipeBuilder
         final Recipe recipe = database.getRecipeQueries().selectByName(name).executeAsOne();
 
         // Insert the ingredients associated with the recipe
-        ingredients.forEach( ingredient -> {
+        for(Ingredient ingredient: ingredients)
+        {
             database.getIngredientQueries().insertOrReplace(ingredient.getName());
             final capstone.project.database.recipe.Ingredient dbIngredient = database.getIngredientQueries().selectByName(ingredient.getName()).executeAsOne();
-            database.getIngredientRecipeQueries().insert(dbIngredient.getI_id(), recipe.get_id(), ingredient.getAmount().longValue());
-        });
+            database.getIngredientRecipeQueries().insert(dbIngredient.getI_id(), recipe.get_id(), Objects.requireNonNull(ingredient.getAmount()).longValue());
+        }
 
         // Insert the steps associated with the recipe
         for(Step step: steps)

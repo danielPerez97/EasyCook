@@ -3,29 +3,26 @@ package capstone.project.database;
 import com.squareup.sqldelight.db.SqlDriver;
 import com.squareup.sqldelight.sqlite.driver.JdbcSqliteDriver;
 
-import static  org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
 import capstone.project.database.recipe.Database;
 import capstone.project.database.recipe.Ingredient;
-import capstone.project.database.recipe.IngredientQueries;
-import capstone.project.database.recipe.IngredientRecipeQueries;
 import capstone.project.database.recipe.Ingredientrecipe;
 import capstone.project.database.recipe.Recipe;
 import capstone.project.database.recipe.RecipeQueries;
 import capstone.project.database.recipe.Step;
-import capstone.project.database.recipe.StepsQueries;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-public class TestRecipeBuilder
+class TestRecipeBuilder
 {
     private Database database;
     private SqlDriver driver;
@@ -52,7 +49,7 @@ public class TestRecipeBuilder
 
     // Make this test pass by implementing the RecipeBuilder
     @Test
-    public void testBoiledEggs()
+    void testBoiledEggs()
     {
         RecipeQueries recipeQueries = database.getRecipeQueries();
 

@@ -3,7 +3,6 @@ package capstone.project.easycook.di;
 import javax.inject.Singleton;
 
 import capstone.project.database.recipe.Database;
-import capstone.project.database.recipe.RecipeQueries;
 import dagger.Module;
 import dagger.Provides;
 
@@ -21,7 +20,7 @@ public class DatabaseModule
 
     @Provides
     @Singleton
-    public Database provideDatabase()
+    Database provideDatabase()
     {
         return database;
     }

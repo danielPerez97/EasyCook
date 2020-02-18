@@ -15,14 +15,10 @@ import androidx.lifecycle.ViewModelProvider;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.jakewharton.rxbinding3.appcompat.RxToolbar;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
-import capstone.project.easycook.BaseApplication;
 import capstone.project.easycook.Utils;
 import capstone.project.easycook.di.viewmodel.ViewModelFactory;
-import capstone.project.easycook.model.ViewRecipe;
 import capstone.project.easycook.viewmodel.SelectCategoryViewModel;
 import daniel.perez.easycook.R;
 import daniel.perez.easycook.databinding.ActivitySelectCategoryBinding;

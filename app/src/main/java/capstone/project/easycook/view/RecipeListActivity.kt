@@ -26,6 +26,7 @@ class RecipeListActivity : AppCompatActivity()
         injector().inject(this)
         super.onCreate(savedInstanceState)
         binding = ActivityRecipeListBinding.inflate(this.layoutInflater)
+        setSupportActionBar(binding.toolbar)
         setContentView(binding.root)
         viewModel = ViewModelProvider(this, factory).get(RecipeListViewModel::class.java)
 
