@@ -89,15 +89,15 @@ public class TestApp
 
 
         // Empty test
-        assertEquals(0, stepsQueries.selectAllRecipeSteps(99999).executeAsList().size());
+        assertEquals(0, recipeQueries.selectAllRecipeSteps(99999).executeAsList().size());
 
         // Foreign key test
         stepsQueries.insertOrReplaceSteps(r_id, testnumber, "DESC", null);
-        assertEquals(1, stepsQueries.selectAllRecipeSteps(r_id).executeAsList().size());
+        assertEquals(1, recipeQueries.selectAllRecipeSteps(r_id).executeAsList().size());
 
         // Insertion test
         stepsQueries.insertOrReplaceSteps(2000, testnumber, "STEP 1", null);
-        assertEquals(1, stepsQueries.selectAllRecipeSteps(2000).executeAsList().size());
+        assertEquals(1, recipeQueries.selectAllRecipeSteps(2000).executeAsList().size());
 
     }
 

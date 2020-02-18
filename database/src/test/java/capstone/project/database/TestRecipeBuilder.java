@@ -4,18 +4,21 @@ import com.squareup.sqldelight.db.SqlDriver;
 import com.squareup.sqldelight.sqlite.driver.JdbcSqliteDriver;
 
 import static  org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 import capstone.project.database.recipe.Database;
-import capstone.project.database.recipe.GetIngredients;
 import capstone.project.database.recipe.Ingredient;
 import capstone.project.database.recipe.IngredientQueries;
 import capstone.project.database.recipe.IngredientRecipeQueries;
+import capstone.project.database.recipe.Ingredientrecipe;
 import capstone.project.database.recipe.Recipe;
 import capstone.project.database.recipe.RecipeQueries;
 import capstone.project.database.recipe.Step;
@@ -26,7 +29,6 @@ public class TestRecipeBuilder
 {
     private Database database;
     private SqlDriver driver;
-    private IRecipeBuilder builder;
     private Recipe boiledEggs;
 
 
@@ -35,10 +37,10 @@ public class TestRecipeBuilder
         driver = new JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY, new Properties());
         Database.Companion.getSchema().create(driver);
         database = Database.Companion.invoke( driver, new Recipe.Adapter( CategorySchema.categoryAdapter() ) );
-        builder = new RecipeBuilder(database);
 
-        boiledEggs = builder
+        boiledEggs = new RecipeBuilder(database)
                 .name("Boiled Eggs")
+                .main(true)
                 .description("Sick Boiled Eggs")
                 .category( Category.BREAKFAST )
                 .addIngredient("Eggs", 3)
@@ -52,24 +54,54 @@ public class TestRecipeBuilder
     @Test
     public void testBoiledEggs()
     {
-        IngredientQueries ingQueries = database.getIngredientQueries();
         RecipeQueries recipeQueries = database.getRecipeQueries();
-        StepsQueries stepsQueries = database.getStepsQueries();
 
-        // Boiled eggs is returning null at the moment. Gather all the steps and ingredients that belong to the recipe.
-        System.out.println(boiledEggs);
-        List<Step> steps = stepsQueries.selectAllRecipeSteps(boiledEggs.get_id()).executeAsList();
-        List<GetIngredients> ingredients = recipeQueries.getIngredients(boiledEggs.get_id()).executeAsList();
+        // Gather the steps and the ingredients into lists
+        List<Step> steps = recipeQueries.selectAllRecipeSteps(boiledEggs.get_id()).executeAsList();
+        List<Ingredient> ingredients = recipeQueries.getIngredients(boiledEggs.get_id()).executeAsList();
 
+        // Test the primitive is as expected
         assertEquals("Boiled Eggs", boiledEggs.getName());
         assertEquals("Sick Boiled Eggs", boiledEggs.getDescription());
         assertEquals( Category.BREAKFAST, boiledEggs.getCategory() );
 
-        assertTrue(ingredients.size() >= 1);
-        ingredients.forEach(ingredient -> assertTrue( Objects.equals(ingredient.getItem_name(), "Eggs") || Objects.equals(ingredient.getItem_name(), "Water")));
+        // Test that there are ONLY 2 ingredients per the builder
+        assertEquals(2, ingredients.size());
+        List<String> ingredientNames = ingredients.stream().map(Ingredient::getItem_name).collect(Collectors.toList());
+        assertTrue(ingredientNames.contains("Eggs"));
+        assertTrue(ingredientNames.contains("Water"));
 
+        // Test that there are ONLY 2 steps per the builder
+        assertEquals(2, steps.size());
+        List<String> stepDescriptions = steps.stream().map(Step::getDescription).collect(Collectors.toList());
+        assertTrue(stepDescriptions.contains("Acquire eggs"));
+        assertTrue(stepDescriptions.contains("Boil the eggs"));
 
-        assertTrue(steps.size() >= 1);
-        steps.forEach(step -> assertTrue( Objects.equals(step.getDescription(), "Acquire eggs") || Objects.equals(step.getDescription(), "Boil the eggs")));
+        // Test the amounts
+        List<Ingredientrecipe> ingredientrecipes = recipeQueries.selectAllIngredientRecipes(boiledEggs.get_id()).executeAsList();
+        List<Long> amounts = ingredientrecipes.stream().map(Ingredientrecipe::getAmount).collect(Collectors.toList());
+        assertEquals(ingredientrecipes.size(), 2);
+        assertEquals(amounts.size(), 2);
+        assertTrue(amounts.contains(3L));
+        assertTrue(amounts.contains(8L));
+    }
+
+    @Test
+    void testFailures()
+    {
+        // Test that an exception IS thrown when there is no name set
+        RecipeBuilder testNameBuilder = new RecipeBuilder(database);
+        assertThrows(Exception.class, () -> testNameBuilder.main(true).insertOrUpdate());
+
+        // Test that an exception IS thrown when there is 'main' property set
+        RecipeBuilder testIsMainBuilder = new RecipeBuilder(database);
+        assertThrows(Exception.class, () -> testIsMainBuilder.name("Test").insertOrUpdate());
+
+        // Test that without setting a category, it becomes Category.UNKNOWN
+        Recipe categoryTestBuilder = new RecipeBuilder(database)
+                .name("Test")
+                .main(true)
+                .insertOrUpdate();
+        assertSame(categoryTestBuilder.getCategory(), Category.UNKNOWN);
     }
 }

@@ -14,7 +14,7 @@ public interface IRecipeBuilder
 
     public RecipeBuilder addStep(Long stepNumber, String stepDescription, Long optionalRecipeId);
 
-    public RecipeBuilder main(boolean isMain);
+    public RecipeBuilder main(Boolean isMain);
 
     public Recipe insertOrUpdate();
 
