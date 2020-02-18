@@ -24,6 +24,7 @@ public class TestApp
     private StepsQueries  stepsQueries;
     private IngredientQueries ingredientQueries;
     private IngredientRecipeQueries ingredientRecipeQueries;
+    IRecipeBuilder builder;
 
 
     TestApp()
@@ -36,6 +37,8 @@ public class TestApp
         stepsQueries  = database.getStepsQueries();
         ingredientQueries = database.getIngredientQueries();
         ingredientRecipeQueries = database.getIngredientRecipeQueries();
+
+        builder = new RecipeBuilder(database);
     }
 
     @Test
@@ -52,7 +55,7 @@ public class TestApp
         assertEquals(0, recipeQueries.selectAll().executeAsList().size());
 
         // Insertion test
-        recipeQueries.insert(testName, testCategory, testDescription,testTimeEstimate, 1);
+        recipeQueries.insertAll(testName, testCategory, testDescription,testTimeEstimate, 1L);
 
         Recipe recipe = recipeQueries.selectByName(testName).executeAsOne();
         assertEquals(1, recipeQueries.selectAll().executeAsList().size());
@@ -81,20 +84,20 @@ public class TestApp
 
 
         // Insert random recipe
-        recipeQueries.insert(testName, testCategory, testDescription,1200, 1);
+        recipeQueries.insertAll(testName, testCategory, testDescription,1200L, 1L);
         long r_id = recipeQueries.selectAll().executeAsOne().get_id();
 
 
         // Empty test
-        assertEquals(0, stepsQueries.selectAllRecipeSteps(99999).executeAsList().size());
+        assertEquals(0, recipeQueries.selectAllRecipeSteps(99999).executeAsList().size());
 
         // Foreign key test
         stepsQueries.insertOrReplaceSteps(r_id, testnumber, "DESC", null);
-        assertEquals(1, stepsQueries.selectAllRecipeSteps(r_id).executeAsList().size());
+        assertEquals(1, recipeQueries.selectAllRecipeSteps(r_id).executeAsList().size());
 
         // Insertion test
         stepsQueries.insertOrReplaceSteps(2000, testnumber, "STEP 1", null);
-        assertEquals(1, stepsQueries.selectAllRecipeSteps(2000).executeAsList().size());
+        assertEquals(1, recipeQueries.selectAllRecipeSteps(2000).executeAsList().size());
 
     }
 
@@ -102,15 +105,15 @@ public class TestApp
     void testIngredient()
     {
         // TEST DATA
-        int     testIngredientID    = 100000;
+        long     testIngredientID    = 100000;
         String  testItemName        = "BANANA";
 
         // Empty test
-        assertEquals(0, ingredientQueries.selectIngredient(testIngredientID).executeAsList().size());
+        assertEquals(0, ingredientQueries.selectById(testIngredientID).executeAsList().size());
 
         // Insertion test
-        ingredientQueries.insertOrReplaceSteps(testIngredientID, testItemName);
-        assertEquals(1, ingredientQueries.selectIngredient(testIngredientID).executeAsList().size());
+        ingredientQueries.insertOrReplace(testItemName);
+        assertEquals(1, ingredientQueries.selectById(testIngredientID).executeAsList().size());
 
     }
 
@@ -127,7 +130,7 @@ public class TestApp
         assertEquals(0, ingredientRecipeQueries.getIngredientAmount(testRecipeID, testIngredientID).executeAsList().size());
 
         //Insertion test
-        ingredientRecipeQueries.insertOrReplaceSteps(testIngredientID, testRecipeID, testIngredientAmount);
+        ingredientRecipeQueries.insert(testIngredientID, testRecipeID, testIngredientAmount);
         assertEquals(1,ingredientRecipeQueries.getIngredientAmount(testIngredientID, testRecipeID).executeAsList().size());
     }
 

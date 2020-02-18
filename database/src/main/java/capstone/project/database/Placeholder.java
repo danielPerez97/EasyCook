@@ -17,4 +17,5 @@ import capstone.project.database.recipe.Database;
 public class Placeholder
 {
     Database database;
+
 }
