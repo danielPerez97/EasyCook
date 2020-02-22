@@ -6,11 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import capstone.project.database.Category
 import capstone.project.easycook.di.viewmodel.ViewModelFactory
 import capstone.project.easycook.injector
 import capstone.project.easycook.view.adapter.RecipeListAdapter
 import capstone.project.easycook.viewmodel.RecipeListViewModel
 import daniel.perez.easycook.databinding.ActivityRecipeListBinding
+import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
 class RecipeListActivity : AppCompatActivity()
@@ -50,6 +52,13 @@ class RecipeListActivity : AppCompatActivity()
             adapter = viewAdapter
         }
 
-        viewAdapter.setData(viewModel.getRecipes())
+        val category = Category.valueOf(intent.getStringExtra("CATEGORY")!!)
+
+        val disposable = viewModel.getRecipes(category)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe{
+                viewAdapter.setData(it)
+            }
+        //viewAdapter.setData(viewModel.getRecipes())
     }
 }
