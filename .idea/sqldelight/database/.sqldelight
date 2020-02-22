@@ -1,1 +1,1 @@
-{"databases":[{"packageName":"capstone.project.database.recipe","compilationUnits":[{"name":"main","sourceFolders":[{"path":"src/main/sqldelight","dependency":false}]}],"outputDirectory":"build\\generated\\sqldelight\\code\\Database","className":"Database","dependencies":[]}]}
+{"databases":[{"packageName":"capstone.project.database.recipe","compilationUnits":[{"name":"main","sourceFolders":[{"path":"src/main/sqldelight","dependency":false}]}],"outputDirectory":"build/generated/sqldelight/code/Database","className":"Database","dependencies":[]}]}

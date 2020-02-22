@@ -33,7 +33,7 @@ public class RecipeBuilder implements IRecipeBuilder
     private ArrayList<Step> steps;
 
 
-    RecipeBuilder(Database database)
+    public RecipeBuilder(Database database)
     {
         recipe_id = -99999999;
         name =  null;
