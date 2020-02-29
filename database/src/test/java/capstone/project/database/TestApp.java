@@ -16,7 +16,7 @@ import capstone.project.database.recipe.StepsQueries;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestApp
+class TestApp
 {
     private Database database;
     private SqlDriver driver;
@@ -24,7 +24,7 @@ public class TestApp
     private StepsQueries  stepsQueries;
     private IngredientQueries ingredientQueries;
     private IngredientRecipeQueries ingredientRecipeQueries;
-    IRecipeBuilder builder;
+    private IRecipeBuilder builder;
 
 
     TestApp()
@@ -109,11 +109,11 @@ public class TestApp
         String  testItemName        = "BANANA";
 
         // Empty test
-        assertEquals(0, ingredientQueries.selectById(testIngredientID).executeAsList().size());
+        assertEquals(0, ingredientQueries.selectAll().executeAsList().size());
 
         // Insertion test
         ingredientQueries.insertOrReplace(testItemName);
-        assertEquals(1, ingredientQueries.selectById(testIngredientID).executeAsList().size());
+        assertEquals(1, ingredientQueries.selectAll().executeAsList().size());
 
     }
 
@@ -121,7 +121,7 @@ public class TestApp
     void testIngredientRecipe()
     {
         //TEST DATA
-        long testIngredientAmount = 30;
+        String testIngredientAmount = "30";
         long testRecipeID = 10001;
         long testIngredientID = 10002;
 

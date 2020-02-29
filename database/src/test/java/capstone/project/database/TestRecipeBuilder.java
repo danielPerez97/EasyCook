@@ -40,8 +40,8 @@ class TestRecipeBuilder
                 .main(true)
                 .description("Sick Boiled Eggs")
                 .category( Category.BREAKFAST )
-                .addIngredient("Eggs", 3)
-                .addIngredient("Water", 8)
+                .addIngredient("Eggs", "3")
+                .addIngredient("Water", "8")
                 .addStep(1L, "Acquire eggs")
                 .addStep(2L, "Boil the eggs")
                 .insertOrUpdate();
@@ -76,11 +76,11 @@ class TestRecipeBuilder
 
         // Test the amounts
         List<Ingredientrecipe> ingredientrecipes = recipeQueries.selectAllIngredientRecipes(boiledEggs.get_id()).executeAsList();
-        List<Long> amounts = ingredientrecipes.stream().map(Ingredientrecipe::getAmount).collect(Collectors.toList());
+        List<String> amounts = ingredientrecipes.stream().map(Ingredientrecipe::getAmount).collect(Collectors.toList());
         assertEquals(ingredientrecipes.size(), 2);
         assertEquals(amounts.size(), 2);
-        assertTrue(amounts.contains(3L));
-        assertTrue(amounts.contains(8L));
+        assertTrue(amounts.contains("3"));
+        assertTrue(amounts.contains("8"));
     }
 
     @Test

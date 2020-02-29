@@ -4,6 +4,8 @@ CREATE TABLE ingredient(
 );
 
 -- Methods
+selectAll:
+SELECT * FROM ingredient;
 
 selectById:
 SELECT * FROM ingredient WHERE i_id = (?);
