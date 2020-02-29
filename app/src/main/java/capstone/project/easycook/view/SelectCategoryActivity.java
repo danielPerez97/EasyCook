@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -24,6 +23,7 @@ import javax.inject.Inject;
 import capstone.project.database.Category;
 import capstone.project.easycook.Utils;
 import capstone.project.easycook.di.viewmodel.ViewModelFactory;
+import capstone.project.easycook.view.createrecipe.CreateRecipeActivity;
 import capstone.project.easycook.viewmodel.SelectCategoryViewModel;
 import daniel.perez.easycook.R;
 import daniel.perez.easycook.databinding.ActivitySelectCategoryBinding;

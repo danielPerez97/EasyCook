@@ -10,10 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="capstone.project.easycook.view.DebugActivity"></activity>
+        <activity android:name="capstone.project.easycook.view.DebugActivity"/>
         <activity android:name="capstone.project.easycook.view.CookRecipeActivity" />
         <activity android:name="capstone.project.easycook.view.RecipeActivity" />
-        <activity android:name="capstone.project.easycook.view.CreateRecipeActivity" />
+        <activity android:name="capstone.project.easycook.view.createrecipe.CreateRecipeActivity" />
         <activity android:name="capstone.project.easycook.view.SelectCategoryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
