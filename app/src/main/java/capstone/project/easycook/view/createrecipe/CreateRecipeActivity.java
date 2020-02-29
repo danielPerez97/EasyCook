@@ -27,6 +27,7 @@ public class CreateRecipeActivity extends AppCompatActivity
 
     @Inject ViewModelFactory factory;
     @Inject List<ViewIngredient> dummyIngredients;
+    @Inject List<ViewStep> dummySteps;
     CreateRecipeViewModel viewModel;
     ActivityCreateRecipeBinding binding;
     AddIngredientAdapter ingredientAdapter;
@@ -43,13 +44,15 @@ public class CreateRecipeActivity extends AppCompatActivity
         viewModel = new ViewModelProvider(this, factory).get(CreateRecipeViewModel.class);
 
         // Set up RecyclerView adapters
+        // TODO do this for AddStepAdapter
         ingredientAdapter = new AddIngredientAdapter();
 
-        //
+        //TODO do this for the stepsList
         binding.ingredientsList.setLayoutManager(new NoScroll(this));
         binding.ingredientsList.setAdapter(ingredientAdapter);
         binding.addIngredientBtn.setOnClickListener(v -> ingredientAdapter.addData(new ViewIngredient("", "")));
 
+        // TODO set the steps as well
         ingredientAdapter.setData(dummyIngredients);
 
         // Finish the Activity
@@ -58,6 +61,7 @@ public class CreateRecipeActivity extends AppCompatActivity
 
     private void save()
     {
+        // TODO gather the list of steps
         List<ViewIngredient> ingredients = ingredientAdapter.ingredients();
 //        List<ViewStep> steps = stepsAdapter.steps();
 

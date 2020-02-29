@@ -11,6 +11,7 @@ import javax.inject.Singleton;
 
 import capstone.project.easycook.model.ViewIngredient;
 import capstone.project.easycook.model.ViewRecipe;
+import capstone.project.easycook.model.ViewStep;
 import dagger.Module;
 import dagger.Provides;
 
@@ -56,5 +57,15 @@ public class AppModule
         ingredients.add(new ViewIngredient("Pepper", "To Taste"));
         ingredients.add(new ViewIngredient("Anaheim Peppers", "12"));
         return ingredients;
+    }
+
+    @Provides
+    @Singleton
+    public List<ViewStep> provideDummySteps()
+    {
+        ArrayList<ViewStep> steps = new ArrayList<>();
+        steps.add(new ViewStep(1, "add salt"));
+        steps.add(new ViewStep(2, "add pepper"));
+        return steps;
     }
 }
