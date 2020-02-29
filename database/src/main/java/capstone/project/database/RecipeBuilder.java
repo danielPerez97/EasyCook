@@ -72,9 +72,9 @@ public class RecipeBuilder implements IRecipeBuilder
         return this;
     }
 
-    public RecipeBuilder addIngredient(String ingredient, int ingredientQuantity)
+    public RecipeBuilder addIngredient(String ingredient, String amount)
     {
-        Ingredient currentIngrendient = new Ingredient(ingredient, ingredientQuantity);
+        Ingredient currentIngrendient = new Ingredient(ingredient, amount);
 
         ingredients.add(currentIngrendient);
 
@@ -130,7 +130,7 @@ public class RecipeBuilder implements IRecipeBuilder
         {
             database.getIngredientQueries().insertOrReplace(ingredient.getName());
             final capstone.project.database.recipe.Ingredient dbIngredient = database.getIngredientQueries().selectByName(ingredient.getName()).executeAsOne();
-            database.getIngredientRecipeQueries().insert(dbIngredient.getI_id(), recipe.get_id(), Objects.requireNonNull(ingredient.getAmount()).longValue());
+            database.getIngredientRecipeQueries().insert(dbIngredient.getI_id(), recipe.get_id(), Objects.requireNonNull(ingredient.getAmount()));
         }
 
         // Insert the steps associated with the recipe
