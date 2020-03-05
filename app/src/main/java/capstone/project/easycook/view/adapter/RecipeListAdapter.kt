@@ -5,10 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import capstone.project.easycook.model.ViewRecipe
 import daniel.perez.easycook.databinding.RecipeEntryBinding
+import io.reactivex.Observable
+import io.reactivex.subjects.PublishSubject
 
 class RecipeListAdapter: RecyclerView.Adapter<RecipeListAdapter.ViewHolder>()
 {
     private var data: List<ViewRecipe> = emptyList()
+    private val clickSubject = PublishSubject.create<ViewRecipe>()
 
     // Used to create a brand new entry in the list
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
@@ -37,11 +40,18 @@ class RecipeListAdapter: RecyclerView.Adapter<RecipeListAdapter.ViewHolder>()
         notifyDataSetChanged()
     }
 
-    class ViewHolder(private val binding: RecipeEntryBinding): RecyclerView.ViewHolder(binding.root)
+    fun clicks(): Observable<ViewRecipe>
+    {
+        return clickSubject
+    }
+
+    inner class ViewHolder(private val binding: RecipeEntryBinding): RecyclerView.ViewHolder(binding.root)
     {
         fun bind(recipe: ViewRecipe)
         {
             binding.entryRecipeName.text = recipe.name
+
+            binding.root.setOnClickListener { clickSubject.onNext(recipe) }
         }
     }
 }

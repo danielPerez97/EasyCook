@@ -1,5 +1,6 @@
 package capstone.project.easycook.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -7,12 +8,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import capstone.project.database.Category
+import capstone.project.database.adapter
 import capstone.project.easycook.di.viewmodel.ViewModelFactory
 import capstone.project.easycook.injector
 import capstone.project.easycook.view.adapter.RecipeListAdapter
 import capstone.project.easycook.viewmodel.RecipeListViewModel
 import daniel.perez.easycook.databinding.ActivityRecipeListBinding
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 class RecipeListActivity : AppCompatActivity()
@@ -22,6 +25,7 @@ class RecipeListActivity : AppCompatActivity()
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var binding: ActivityRecipeListBinding
     private lateinit var viewModel: RecipeListViewModel
+    private val disposables = CompositeDisposable()
     @Inject lateinit var factory: ViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?)
@@ -54,11 +58,22 @@ class RecipeListActivity : AppCompatActivity()
 
         val category = Category.valueOf(intent.getStringExtra("CATEGORY")!!)
 
-        val disposable = viewModel.getRecipes(category)
+        disposables.add(viewModel.getRecipes(category)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe{
                 viewAdapter.setData(it)
-            }
-        //viewAdapter.setData(viewModel.getRecipes())
+            })
+
+        disposables.add(viewAdapter.clicks()
+            .subscribe{
+                  startRecipeActivity(it.id)
+            })
+    }
+
+    private fun startRecipeActivity(id: Long)
+    {
+        val intent = Intent(this, RecipeActivity::class.java)
+        intent.putExtra("RECIPE_ID", id)
+        startActivity(intent)
     }
 }
