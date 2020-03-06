@@ -1,5 +1,6 @@
 package capstone.project.easycook.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import capstone.project.database.recipe.Database
 import capstone.project.easycook.model.ViewStep
@@ -13,9 +14,11 @@ class CookRecipeViewModel @Inject internal constructor(private val database: Dat
 {
     fun steps(recipeId: Long): Observable<List<ViewStep>>
     {
-        return database.recipeQueries.selectAllRecipeSteps(recipeId).asObservable(Schedulers.io())
+        return database.recipeQueries.selectAllRecipeSteps(recipeId)
+            .asObservable(Schedulers.io())
             .mapToList()
-            .map { it.map { ViewStep(it.step_number!!, it.description!!) } }
+            .doOnNext { Log.i("CookRecipeViewModel", it.size.toString()) }
+            .map { dbStepList -> dbStepList.map { ViewStep(it.step_number, it.description) } }
     }
 
 }
