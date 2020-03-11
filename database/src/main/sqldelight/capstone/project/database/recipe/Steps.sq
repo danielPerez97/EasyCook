@@ -1,7 +1,7 @@
 CREATE TABLE step(
     r_id INTEGER NOT NULL,
-    step_number INTEGER UNIQUE,
-    description TEXT,
+    step_number INTEGER NOT NULL,
+    description TEXT NOT NULL,
     sub_recipe_id INTEGER,
     PRIMARY KEY (r_id, step_number),
     FOREIGN KEY (r_id) REFERENCES recipe(_id),
