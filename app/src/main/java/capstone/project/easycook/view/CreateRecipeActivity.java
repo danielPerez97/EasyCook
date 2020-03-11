@@ -1,4 +1,4 @@
-package capstone.project.easycookwatch.view;
+package capstone.project.easycook.view;
 
 import android.os.Bundle;
 
@@ -7,10 +7,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import javax.inject.Inject;
 
-import capstone.project.easycookwatch.Utils;
-import capstone.project.easycookwatch.di.viewmodel.ViewModelFactory;
-import capstone.project.easycookwatch.viewmodel.CreateRecipeViewModel;
-import capstone.project.easycookwatch.databinding.ActivityCreateRecipeBinding;
+import capstone.project.easycook.Utils;
+import capstone.project.easycook.databinding.ActivityCreateRecipeBinding;
+import capstone.project.easycook.di.viewmodel.ViewModelFactory;
+import capstone.project.easycook.viewmodel.CreateRecipeViewModel;
 
 public class CreateRecipeActivity extends AppCompatActivity
 {

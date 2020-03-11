@@ -8,10 +8,10 @@ import androidx.lifecycle.ViewModelProvider;
 import javax.inject.Inject;
 
 import capstone.project.easycook.Utils;
+import capstone.project.easycook.databinding.ActivityCookRecipeBinding;
 import capstone.project.easycook.di.viewmodel.ViewModelFactory;
 import capstone.project.easycook.view.fragments.CookStepPagerAdapter;
 import capstone.project.easycook.viewmodel.CookRecipeViewModel;
-import daniel.perez.easycook.databinding.ActivityCookRecipeBinding;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 

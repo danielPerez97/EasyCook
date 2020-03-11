@@ -1,4 +1,4 @@
-package capstone.project.easycookwatch;
+package capstone.project.easycook;
 
 import android.app.Application;
 
@@ -7,10 +7,10 @@ import com.squareup.sqldelight.android.AndroidSqliteDriver;
 import capstone.project.database.CategorySchema;
 import capstone.project.database.recipe.Database;
 import capstone.project.database.recipe.Recipe;
-import capstone.project.easycookwatch.di.AppInjector;
-import capstone.project.easycookwatch.di.AppModule;
-import capstone.project.easycookwatch.di.DaggerAppInjector;
-import capstone.project.easycookwatch.di.DatabaseModule;
+import capstone.project.easycook.di.AppInjector;
+import capstone.project.easycook.di.AppModule;
+import capstone.project.easycook.di.DaggerAppInjector;
+import capstone.project.easycook.di.DatabaseModule;
 
 public class BaseApplication extends Application
 {

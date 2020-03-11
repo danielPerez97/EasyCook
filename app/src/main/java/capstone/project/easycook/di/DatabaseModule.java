@@ -1,4 +1,4 @@
-package capstone.project.easycookwatch.di;
+package capstone.project.easycook.di;
 
 import javax.inject.Singleton;
 

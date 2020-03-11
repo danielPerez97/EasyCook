@@ -1,10 +1,11 @@
 @file:JvmName("Utils")
 
-package capstone.project.easycookwatch
+package capstone.project.easycook
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
-import capstone.project.easycookwatch.di.AppInjector
+import capstone.project.easycook.BaseApplication
+import capstone.project.easycook.di.AppInjector
 
 fun AppCompatActivity.injector(): AppInjector
 {

@@ -1,8 +1,8 @@
 // Skeleton Injector that we define but Dagger will fill in for us
-package capstone.project.easycookwatch.di
+package capstone.project.easycook.di
 
-import capstone.project.easycookwatch.di.viewmodel.ViewModelModule
-import capstone.project.easycookwatch.view.*
+import capstone.project.easycook.di.viewmodel.ViewModelModule
+import capstone.project.easycook.view.*
 import dagger.Component
 import javax.inject.Singleton
 

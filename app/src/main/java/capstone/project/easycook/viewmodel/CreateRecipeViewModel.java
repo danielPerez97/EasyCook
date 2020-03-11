@@ -1,4 +1,4 @@
-package capstone.project.easycookwatch.viewmodel;
+package capstone.project.easycook.viewmodel;
 
 import androidx.lifecycle.ViewModel;
 
@@ -6,12 +6,13 @@ import javax.inject.Inject;
 
 import capstone.project.database.recipe.Database;
 
-public class RecipeViewModel extends ViewModel
+public class CreateRecipeViewModel extends ViewModel
 {
+
     private Database database;
 
     @Inject
-    RecipeViewModel(Database database)
+    CreateRecipeViewModel(Database database)
     {
         this.database = database;
     }

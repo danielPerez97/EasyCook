@@ -1,4 +1,4 @@
-package capstone.project.easycookwatch.view;
+package capstone.project.easycook.view;
 
 import android.os.Bundle;
 
@@ -10,8 +10,8 @@ import capstone.project.database.Category;
 import capstone.project.database.RecipeBuilder;
 import capstone.project.database.recipe.Database;
 import capstone.project.database.recipe.Recipe;
-import capstone.project.easycookwatch.Utils;
-import capstone.project.easycookwatch.databinding.ActivityDebugBinding;
+import capstone.project.easycook.Utils;
+import capstone.project.easycook.databinding.ActivityDebugBinding;
 
 public class DebugActivity extends AppCompatActivity
 {

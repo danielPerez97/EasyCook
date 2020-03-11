@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import capstone.project.database.Category
 import capstone.project.database.adapter
+import capstone.project.easycook.databinding.ActivityRecipeListBinding
 import capstone.project.easycook.di.viewmodel.ViewModelFactory
 import capstone.project.easycook.injector
 import capstone.project.easycook.view.adapter.RecipeListAdapter
 import capstone.project.easycook.viewmodel.RecipeListViewModel
-import daniel.perez.easycook.databinding.ActivityRecipeListBinding
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject

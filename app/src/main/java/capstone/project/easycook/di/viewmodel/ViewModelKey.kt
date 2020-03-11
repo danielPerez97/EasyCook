@@ -1,4 +1,4 @@
-package capstone.project.easycookwatch.di.viewmodel
+package capstone.project.easycook.di.viewmodel
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

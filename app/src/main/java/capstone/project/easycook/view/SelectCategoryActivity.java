@@ -1,4 +1,4 @@
-package capstone.project.easycookwatch.view;
+package capstone.project.easycook.view;
 
 
 import android.content.Intent;
@@ -21,11 +21,11 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 
 import capstone.project.database.Category;
-import capstone.project.easycookwatch.Utils;
-import capstone.project.easycookwatch.di.viewmodel.ViewModelFactory;
-import capstone.project.easycookwatch.viewmodel.SelectCategoryViewModel;
-import capstone.project.easycookwatch.R;
-import capstone.project.easycookwatch.databinding.ActivitySelectCategoryBinding;
+import capstone.project.easycook.R;
+import capstone.project.easycook.Utils;
+import capstone.project.easycook.databinding.ActivitySelectCategoryBinding;
+import capstone.project.easycook.di.viewmodel.ViewModelFactory;
+import capstone.project.easycook.viewmodel.SelectCategoryViewModel;
 import io.reactivex.disposables.Disposable;
 
 public class SelectCategoryActivity extends AppCompatActivity
