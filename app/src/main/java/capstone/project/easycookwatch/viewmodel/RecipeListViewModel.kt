@@ -19,6 +19,6 @@ class RecipeListViewModel @Inject constructor(private val database: Database): V
         return database.recipeQueries.selectByCategory(category)
             .asObservable(Schedulers.io())
             .mapToList()
-            .map { recipes -> recipes.map { ViewRecipe(it.name) } }
+            .map { recipes -> recipes.map { ViewRecipe(it._id, it.name) } }
     }
 }
