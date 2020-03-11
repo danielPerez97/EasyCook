@@ -1,5 +1,6 @@
 package capstone.project.easycook.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,5 +28,15 @@ public class RecipeActivity extends AppCompatActivity
         setSupportActionBar(binding.toolbar);
         setContentView(binding.getRoot());
         viewModel = new ViewModelProvider(this, factory).get(RecipeViewModel.class);
+        long recipeId = getIntent().getLongExtra("RECIPE_ID", -1);
+
+        binding.toCookRecipeBtn.setOnClickListener(v -> cookRecipe(recipeId));
+    }
+
+    private void cookRecipe(long id)
+    {
+        Intent intent = new Intent(this, CookRecipeActivity.class);
+        intent.putExtra("RECIPE_ID", id);
+        startActivity(intent);
     }
 }

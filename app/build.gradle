@@ -79,4 +79,7 @@ dependencies {
     // Glide
     implementation "com.github.bumptech.glide:glide:$rootProject.ext.glideVersion"
     annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.ext.glideVersion"
+
+    // ViewPager2
+    implementation "androidx.viewpager2:viewpager2:$rootProject.ext.viewPager2Version"
 }
