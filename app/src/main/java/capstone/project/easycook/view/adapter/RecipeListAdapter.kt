@@ -3,8 +3,8 @@ package capstone.project.easycook.view.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import capstone.project.core.ViewRecipe
 import capstone.project.easycook.databinding.RecipeEntryBinding
-import capstone.project.easycook.model.ViewRecipe
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 

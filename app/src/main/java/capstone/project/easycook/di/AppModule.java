@@ -9,7 +9,7 @@ import java.util.List;
 
 import javax.inject.Singleton;
 
-import capstone.project.easycook.model.ViewRecipe;
+import capstone.project.core.ViewRecipe;
 import dagger.Module;
 import dagger.Provides;
 

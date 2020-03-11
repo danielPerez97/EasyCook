@@ -25,7 +25,7 @@ class MainActivity : WearableActivity()
         setContentView(binding.root)
 
         recyclerView()
-        recipeAdapter.setData(listOf(ViewRecipe("Cereal"), ViewRecipe("Eggs")))
+        recipeAdapter.setData(listOf(ViewRecipe(-1, "Cereal"), ViewRecipe(-1, "Eggs")))
 
         // Enables Always-on
         setAmbientEnabled()
