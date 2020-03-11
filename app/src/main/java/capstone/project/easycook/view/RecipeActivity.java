@@ -9,9 +9,9 @@ import androidx.lifecycle.ViewModelProvider;
 import javax.inject.Inject;
 
 import capstone.project.easycook.Utils;
+import capstone.project.easycook.databinding.ActivityRecipeBinding;
 import capstone.project.easycook.di.viewmodel.ViewModelFactory;
 import capstone.project.easycook.viewmodel.RecipeViewModel;
-import daniel.perez.easycook.databinding.ActivityRecipeBinding;
 
 public class RecipeActivity extends AppCompatActivity
 {

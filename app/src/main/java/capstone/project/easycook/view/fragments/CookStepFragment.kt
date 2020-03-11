@@ -5,9 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import capstone.project.easycook.databinding.CookStepEntryBinding
 import capstone.project.easycook.model.ViewStep
-import daniel.perez.easycook.R
-import daniel.perez.easycook.databinding.CookStepEntryBinding
 
 class CookStepFragment(val step: ViewStep): Fragment()
 {

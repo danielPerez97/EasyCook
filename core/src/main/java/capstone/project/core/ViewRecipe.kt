@@ -1,3 +1,3 @@
-package capstone.project.easycook.model
+package capstone.project.core
 
 data class ViewRecipe(val id: Long, val name: String)

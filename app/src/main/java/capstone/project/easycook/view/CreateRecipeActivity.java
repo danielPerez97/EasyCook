@@ -1,6 +1,5 @@
 package capstone.project.easycook.view;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,9 +8,9 @@ import androidx.lifecycle.ViewModelProvider;
 import javax.inject.Inject;
 
 import capstone.project.easycook.Utils;
+import capstone.project.easycook.databinding.ActivityCreateRecipeBinding;
 import capstone.project.easycook.di.viewmodel.ViewModelFactory;
 import capstone.project.easycook.viewmodel.CreateRecipeViewModel;
-import daniel.perez.easycook.databinding.ActivityCreateRecipeBinding;
 
 public class CreateRecipeActivity extends AppCompatActivity
 {

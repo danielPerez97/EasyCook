@@ -9,7 +9,7 @@ import java.util.List;
 
 import javax.inject.Singleton;
 
-import capstone.project.easycook.model.ViewRecipe;
+import capstone.project.core.ViewRecipe;
 import dagger.Module;
 import dagger.Provides;
 
@@ -25,14 +25,14 @@ public class AppModule
 
     @Provides
     @Singleton
-    public Context provideContext()
+    Context provideContext()
     {
         return context;
     }
 
     @Provides
     @Singleton
-    public List<ViewRecipe> provideDummyRecipes()
+    List<ViewRecipe> provideDummyRecipes()
     {
         ArrayList<ViewRecipe> recipes = new ArrayList<>();
         recipes.add(new ViewRecipe(-1, "Cereal"));

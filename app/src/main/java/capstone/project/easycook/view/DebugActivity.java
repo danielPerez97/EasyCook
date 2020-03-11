@@ -11,7 +11,7 @@ import capstone.project.database.RecipeBuilder;
 import capstone.project.database.recipe.Database;
 import capstone.project.database.recipe.Recipe;
 import capstone.project.easycook.Utils;
-import daniel.perez.easycook.databinding.ActivityDebugBinding;
+import capstone.project.easycook.databinding.ActivityDebugBinding;
 
 public class DebugActivity extends AppCompatActivity
 {

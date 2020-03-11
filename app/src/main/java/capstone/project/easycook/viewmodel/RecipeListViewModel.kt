@@ -2,9 +2,9 @@ package capstone.project.easycook.viewmodel
 
 
 import androidx.lifecycle.ViewModel
+import capstone.project.core.ViewRecipe
 import capstone.project.database.Category
 import capstone.project.database.recipe.Database
-import capstone.project.easycook.model.ViewRecipe
 import com.squareup.sqldelight.runtime.rx.asObservable
 import com.squareup.sqldelight.runtime.rx.mapToList
 import io.reactivex.Observable
