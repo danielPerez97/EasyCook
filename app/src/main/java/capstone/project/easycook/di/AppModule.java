@@ -37,14 +37,14 @@ public class AppModule
     public List<ViewRecipe> provideDummyRecipes()
     {
         ArrayList<ViewRecipe> recipes = new ArrayList<>();
-        recipes.add(new ViewRecipe("Cereal"));
-        recipes.add(new ViewRecipe("Eggs Con Chorizo"));
-        recipes.add(new ViewRecipe("Scramble Eggs with Ketchup"));
-        recipes.add(new ViewRecipe("Grilled Cheeseburgers"));
-        recipes.add(new ViewRecipe("Fish and Chips"));
-        recipes.add(new ViewRecipe("Grilled Cheese Sandwich"));
-        recipes.add(new ViewRecipe("Gnocchi Soup"));
-        recipes.add(new ViewRecipe("Spaghetti"));
+        recipes.add(new ViewRecipe(-1, "Cereal"));
+        recipes.add(new ViewRecipe(-1, "Eggs Con Chorizo"));
+        recipes.add(new ViewRecipe(-1, "Scramble Eggs with Ketchup"));
+        recipes.add(new ViewRecipe(-1, "Grilled Cheeseburgers"));
+        recipes.add(new ViewRecipe(-1, "Fish and Chips"));
+        recipes.add(new ViewRecipe(-1, "Grilled Cheese Sandwich"));
+        recipes.add(new ViewRecipe(-1, "Gnocchi Soup"));
+        recipes.add(new ViewRecipe(-1, "Spaghetti"));
         return recipes;
     }
 
