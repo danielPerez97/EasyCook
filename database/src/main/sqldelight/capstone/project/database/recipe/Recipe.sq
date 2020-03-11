@@ -18,6 +18,9 @@ SELECT * FROM recipe;
 selectByName:
 SELECT * FROM recipe WHERE name = ?;
 
+selectById:
+SELECT * FROM recipe WHERE _id = ?;
+
 selectByCategory:
 SELECT * FROM recipe WHERE category = (?) AND is_main = 1;
 
