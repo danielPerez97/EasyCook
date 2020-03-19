@@ -1,7 +1,6 @@
-package capstone.project.easycook.view.adapter;
+package capstone.project.easycook.view.createrecipe.adapter;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;

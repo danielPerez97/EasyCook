@@ -1,24 +1,25 @@
 package capstone.project.easycook.view.createrecipe;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import capstone.project.database.Category;
 import capstone.project.easycook.Utils;
 import capstone.project.easycook.di.viewmodel.ViewModelFactory;
 import capstone.project.easycook.model.ViewIngredient;
 import capstone.project.easycook.model.ViewStep;
-import capstone.project.easycook.view.adapter.AddIngredientAdapter;
-import capstone.project.easycook.view.adapter.AddStepAdapter;
+import capstone.project.easycook.view.adapter.SimpleItemTouchHelperCallback;
+import capstone.project.easycook.view.createrecipe.adapter.AddIngredientAdapter;
+import capstone.project.easycook.view.createrecipe.adapter.AddStepAdapter;
 import capstone.project.easycook.viewmodel.CreateRecipeViewModel;
 import daniel.perez.easycook.databinding.ActivityCreateRecipeBinding;
 
@@ -30,8 +31,8 @@ public class CreateRecipeActivity extends AppCompatActivity
     @Inject List<ViewStep> dummySteps;
     CreateRecipeViewModel viewModel;
     ActivityCreateRecipeBinding binding;
-    AddIngredientAdapter ingredientAdapter;
-    AddStepAdapter stepsAdapter;
+    AddIngredientAdapter ingredientAdapter = new AddIngredientAdapter();
+    AddStepAdapter stepsAdapter = new AddStepAdapter();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -43,17 +44,24 @@ public class CreateRecipeActivity extends AppCompatActivity
         setContentView(binding.getRoot());
         viewModel = new ViewModelProvider(this, factory).get(CreateRecipeViewModel.class);
 
-        // Set up RecyclerView adapters
-        // TODO do this for AddStepAdapter
-        ingredientAdapter = new AddIngredientAdapter();
-
-        //TODO do this for the stepsList
-        binding.ingredientsList.setLayoutManager(new NoScroll(this));
+        // Set up the ingredients RecyclerView adapter
+        binding.ingredientsList.setLayoutManager(new LinearLayoutManager(getBaseContext()));
         binding.ingredientsList.setAdapter(ingredientAdapter);
-        binding.addIngredientBtn.setOnClickListener(v -> ingredientAdapter.addData(new ViewIngredient("", "")));
 
-        // TODO set the steps as well
+        // Set up the steps RecyclerView adapter
+        binding.stepsList.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+        binding.stepsList.setAdapter(stepsAdapter);
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(stepsAdapter);
+        ItemTouchHelper helper = new ItemTouchHelper(callback);
+        helper.attachToRecyclerView(binding.stepsList);
+
+        // Set up dummy data
         ingredientAdapter.setData(dummyIngredients);
+        stepsAdapter.setData(dummySteps);
+
+        // Set up the buttons
+        binding.addIngredientBtn.setOnClickListener(v -> ingredientAdapter.addData(new ViewIngredient("", "")));
+        binding.addStepBtn.setOnClickListener(v -> stepsAdapter.addData(new ViewStep(-1, "")));
 
         // Finish the Activity
         binding.finishBtn.setOnClickListener(v -> save());
@@ -63,26 +71,21 @@ public class CreateRecipeActivity extends AppCompatActivity
     {
         // TODO gather the list of steps
         List<ViewIngredient> ingredients = ingredientAdapter.ingredients();
-//        List<ViewStep> steps = stepsAdapter.steps();
+        List<ViewStep> steps = stepsAdapter.steps();
 
         // Notify the ViewModel
-//        viewModel.save(
-//                binding.editName.getText().toString(),
-//                binding.descTv.getText().toString(),
-//                ingredients,
-//                steps)
+        viewModel.save(
+                binding.editName.getText().toString(),
+                binding.descTv.getText().toString(),
+                category(),
+                ingredients,
+                steps);
+
+        finish();
     }
 
-    private static class NoScroll extends LinearLayoutManager
+    private Category category()
     {
-
-        public NoScroll(Context context) {
-            super(context);
-        }
-
-        @Override
-        public boolean canScrollVertically() {
-            return false;
-        }
+        return Category.DINNER;
     }
 }
