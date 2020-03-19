@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import capstone.project.core.ViewRecipe;
 import capstone.project.database.recipe.Database;
 import capstone.project.database.recipe.Step;
+import capstone.project.easycook.Utils;
 import capstone.project.easycook.model.ViewStep;
 import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
@@ -36,13 +37,6 @@ public class RecipeViewModel extends ViewModel
     public Observable<List<ViewStep>> getSteps(long recipeId)
     {
         return RxQuery.mapToList( RxQuery.toObservable( database.getStepsQueries().getStepsFromRecipeId(recipeId) ) )
-                .map((List<Step> steps) -> {
-                    ArrayList<ViewStep> viewSteps = new ArrayList<>();
-                    for(Step step: steps)
-                    {
-                        viewSteps.add(new ViewStep(step.getStep_number(), step.getDescription()));
-                    }
-                    return viewSteps;
-                });
+                .map(Utils::toViewSteps);
     }
 }
