@@ -9,7 +9,9 @@ import java.util.List;
 
 import javax.inject.Singleton;
 
-import capstone.project.core.ViewRecipe;
+import capstone.project.easycook.model.ViewIngredient;
+import capstone.project.easycook.model.ViewRecipe;
+import capstone.project.easycook.model.ViewStep;
 import dagger.Module;
 import dagger.Provides;
 
@@ -25,14 +27,14 @@ public class AppModule
 
     @Provides
     @Singleton
-    Context provideContext()
+    public Context provideContext()
     {
         return context;
     }
 
     @Provides
     @Singleton
-    List<ViewRecipe> provideDummyRecipes()
+    public List<ViewRecipe> provideDummyRecipes()
     {
         ArrayList<ViewRecipe> recipes = new ArrayList<>();
         recipes.add(new ViewRecipe(-1, "Cereal"));
@@ -44,5 +46,26 @@ public class AppModule
         recipes.add(new ViewRecipe(-1, "Gnocchi Soup"));
         recipes.add(new ViewRecipe(-1, "Spaghetti"));
         return recipes;
+    }
+
+    @Provides
+    @Singleton
+    public List<ViewIngredient> provideDummyIngredients()
+    {
+        ArrayList<ViewIngredient> ingredients = new ArrayList<>();
+        ingredients.add(new ViewIngredient("Salt", "To Taste"));
+        ingredients.add(new ViewIngredient("Pepper", "To Taste"));
+        ingredients.add(new ViewIngredient("Anaheim Peppers", "12"));
+        return ingredients;
+    }
+
+    @Provides
+    @Singleton
+    public List<ViewStep> provideDummySteps()
+    {
+        ArrayList<ViewStep> steps = new ArrayList<>();
+        steps.add(new ViewStep(1, "add salt"));
+        steps.add(new ViewStep(2, "add pepper"));
+        return steps;
     }
 }

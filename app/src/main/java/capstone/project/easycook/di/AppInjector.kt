@@ -3,6 +3,7 @@ package capstone.project.easycook.di
 
 import capstone.project.easycook.di.viewmodel.ViewModelModule
 import capstone.project.easycook.view.*
+import capstone.project.easycook.view.createrecipe.CreateRecipeActivity
 import dagger.Component
 import javax.inject.Singleton
 
