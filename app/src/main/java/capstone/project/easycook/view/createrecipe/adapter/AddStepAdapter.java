@@ -110,9 +110,9 @@ public class AddStepAdapter extends RecyclerView.Adapter<AddStepAdapter.ViewHold
             binding.stepNumberTv.setText( Long.toString( step.getNumber() ) );
 
             disposables.add(
-                    RxTextView.textChangeEvents(binding.cookingStepDescription)
-                            .takeUntil( RxView.detaches(binding.getRoot() ) )
-                            .subscribe()
+                    RxTextView.textChangeEvents( binding.cookingStepDescription )
+                            .takeUntil( RxView.detaches( binding.getRoot() ) )
+                            .subscribe(desc -> step.setDescription(desc.getText().toString()))
             );
 
         }

@@ -22,17 +22,18 @@ import capstone.project.easycook.view.createrecipe.adapter.AddIngredientAdapter;
 import capstone.project.easycook.view.createrecipe.adapter.AddStepAdapter;
 import capstone.project.easycook.viewmodel.CreateRecipeViewModel;
 import daniel.perez.easycook.databinding.ActivityCreateRecipeBinding;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 
 public class CreateRecipeActivity extends AppCompatActivity
 {
 
     @Inject ViewModelFactory factory;
-    @Inject List<ViewIngredient> dummyIngredients;
-    @Inject List<ViewStep> dummySteps;
     CreateRecipeViewModel viewModel;
     ActivityCreateRecipeBinding binding;
     AddIngredientAdapter ingredientAdapter = new AddIngredientAdapter();
     AddStepAdapter stepsAdapter = new AddStepAdapter();
+    CompositeDisposable disposables = new CompositeDisposable();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -55,10 +56,6 @@ public class CreateRecipeActivity extends AppCompatActivity
         ItemTouchHelper helper = new ItemTouchHelper(callback);
         helper.attachToRecyclerView(binding.stepsList);
 
-        // Set up dummy data
-        ingredientAdapter.setData(dummyIngredients);
-        stepsAdapter.setData(dummySteps);
-
         // Set up the buttons
         binding.addIngredientBtn.setOnClickListener(v -> ingredientAdapter.addData(new ViewIngredient("", "")));
         binding.addStepBtn.setOnClickListener(v -> stepsAdapter.addData(new ViewStep(-1, "")));
@@ -74,14 +71,14 @@ public class CreateRecipeActivity extends AppCompatActivity
         List<ViewStep> steps = stepsAdapter.steps();
 
         // Notify the ViewModel
-        viewModel.save(
+        disposables.add(viewModel.save(
                 binding.editName.getText().toString(),
                 binding.descTv.getText().toString(),
                 category(),
                 ingredients,
-                steps);
-
-        finish();
+                steps)
+        .observeOn( AndroidSchedulers.mainThread() )
+        .subscribe(recipe -> finish()));
     }
 
     private Category category()
