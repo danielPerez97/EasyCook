@@ -9,8 +9,8 @@ import java.util.List;
 
 import javax.inject.Singleton;
 
+import capstone.project.core.ViewRecipe;
 import capstone.project.easycook.model.ViewIngredient;
-import capstone.project.easycook.model.ViewRecipe;
 import capstone.project.easycook.model.ViewStep;
 import dagger.Module;
 import dagger.Provides;

@@ -14,9 +14,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import capstone.project.easycook.databinding.AddStepEntryBinding;
 import capstone.project.easycook.model.ViewStep;
 import capstone.project.easycook.view.adapter.ItemTouchHelperAdapter;
-import daniel.perez.easycook.databinding.AddStepEntryBinding;
 import io.reactivex.disposables.CompositeDisposable;
 
 public class AddStepAdapter extends RecyclerView.Adapter<AddStepAdapter.ViewHolder> implements ItemTouchHelperAdapter

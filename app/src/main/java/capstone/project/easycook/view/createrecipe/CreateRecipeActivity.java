@@ -14,6 +14,7 @@ import javax.inject.Inject;
 
 import capstone.project.database.Category;
 import capstone.project.easycook.Utils;
+import capstone.project.easycook.databinding.ActivityCreateRecipeBinding;
 import capstone.project.easycook.di.viewmodel.ViewModelFactory;
 import capstone.project.easycook.model.ViewIngredient;
 import capstone.project.easycook.model.ViewStep;
@@ -21,7 +22,6 @@ import capstone.project.easycook.view.adapter.SimpleItemTouchHelperCallback;
 import capstone.project.easycook.view.createrecipe.adapter.AddIngredientAdapter;
 import capstone.project.easycook.view.createrecipe.adapter.AddStepAdapter;
 import capstone.project.easycook.viewmodel.CreateRecipeViewModel;
-import daniel.perez.easycook.databinding.ActivityCreateRecipeBinding;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 

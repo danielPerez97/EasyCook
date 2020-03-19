@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import capstone.project.easycook.databinding.AddIngredientEntryBinding;
 import capstone.project.easycook.model.ViewIngredient;
-import daniel.perez.easycook.databinding.AddIngredientEntryBinding;
 
 public class AddIngredientAdapter extends RecyclerView.Adapter<AddIngredientAdapter.ViewHolder>
 {
