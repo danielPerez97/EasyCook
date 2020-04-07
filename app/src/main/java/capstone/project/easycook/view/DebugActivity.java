@@ -52,6 +52,8 @@ public class DebugActivity extends AppCompatActivity
                 .addStep(2L, "pour milk first")
                 .addStep(3L, "pour cereal")
                 .addStep(4L, "eat ;-)")
+                .addIngredient("Milk", "2 cups")
+                .addIngredient("Any healthy cereal", "42 g")
                 .main(true)
                 .insertOrUpdate();
 
@@ -63,6 +65,8 @@ public class DebugActivity extends AppCompatActivity
                 .addStep(2L, "Grill the wings for 30 min")
                 .addStep(3L, "Make the sauce", wingSauce.get_id())
                 .addStep(4L, "Coat the wings in the sauce")
+                .addIngredient("Raw chicken wings", "69.420 kg")
+                .addIngredient("Wing seasoning of your choice", "2 tbsp")
                 .main(true)
                 .insertOrUpdate();
 

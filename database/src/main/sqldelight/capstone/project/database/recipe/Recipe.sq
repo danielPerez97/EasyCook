@@ -32,7 +32,7 @@ INSERT OR REPLACE INTO recipe(name, category, description, time_estimate,is_main
 
 -- Gets ALL the ingredients that belong to a recipe
 getIngredients:
-SELECT ingredient.i_id, ingredient.item_name FROM ingredientrecipe JOIN ingredient ON ingredientrecipe.ingredient_id = ingredient.i_id
+SELECT ingredient.i_id, ingredient.item_name, ingredientrecipe.amount FROM ingredientrecipe JOIN ingredient ON ingredientrecipe.ingredient_id = ingredient.i_id
 WHERE ingredientrecipe.recipe_id IS (?);
 
 -- Gets ALL the steps that belong to a recipe

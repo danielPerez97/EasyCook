@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import capstone.project.core.ViewIngredient;
 import capstone.project.core.ViewRecipe;
 import capstone.project.database.recipe.Database;
 import capstone.project.database.recipe.Step;
@@ -38,5 +39,11 @@ public class RecipeViewModel extends ViewModel
     {
         return RxQuery.mapToList( RxQuery.toObservable( database.getStepsQueries().getStepsFromRecipeId(recipeId) ) )
                 .map(Utils::toViewSteps);
+    }
+
+    public Observable<List<ViewIngredient>> getIngredients(long recipeID)
+    {
+        return RxQuery.mapToList( RxQuery.toObservable( database.getRecipeQueries().getIngredients(recipeID) ))
+                .map(Utils::toViewIngredients);
     }
 }

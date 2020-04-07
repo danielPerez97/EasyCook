@@ -4,6 +4,10 @@ package capstone.project.easycook
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
+import capstone.project.core.ViewIngredient
+import capstone.project.database.recipe.GetIngredients
+import capstone.project.database.recipe.Ingredient
+import capstone.project.database.recipe.Ingredientrecipe
 import capstone.project.database.recipe.Step
 import capstone.project.easycook.BaseApplication
 import capstone.project.easycook.di.AppInjector
@@ -30,4 +34,9 @@ fun <A: AppCompatActivity, B: AppCompatActivity> A.startView(destination: Class<
 fun List<Step>.toViewSteps(): List<ViewStep>
 {
     return this.map { ViewStep(it.step_number, it.description) }
+}
+
+fun List<GetIngredients>.toViewIngredients(): List<ViewIngredient>
+{
+    return this.map { ViewIngredient(it.item_name!!, it.amount!!) }
 }
