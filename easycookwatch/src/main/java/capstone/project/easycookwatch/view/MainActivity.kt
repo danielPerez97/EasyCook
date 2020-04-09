@@ -8,6 +8,7 @@ import capstone.project.core.ViewRecipe
 import capstone.project.easycookwatch.databinding.ActivityMainBinding
 import capstone.project.easycookwatch.injector
 import capstone.project.easycookwatch.view.adapter.RecipeListAdapter
+import com.google.android.gms.wearable.Wearable
 import javax.inject.Inject
 
 class MainActivity : WearableActivity()
