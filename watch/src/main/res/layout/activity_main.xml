@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.wear.widget.WearableRecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.wear.widget.BoxInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/recipes_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbars="vertical"
-    tools:context=".view.MainActivity"
-    tools:deviceIds="wear">
+    tools:context=".view.MainActivity">
 
-</androidx.wear.widget.WearableRecyclerView>
+
+    <androidx.wear.widget.WearableRecyclerView
+        android:id="@+id/recipe_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:visibility="gone"/>
+
+    <ProgressBar
+        android:id="@+id/progress_spinner"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/failure_image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_error_outline_black_24dp"
+        android:visibility="gone"/>
+
+
+</androidx.wear.widget.BoxInsetLayout>

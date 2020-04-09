@@ -4,6 +4,7 @@ import android.app.Application
 import capstone.project.watch.di.DaggerWatchInjector
 import capstone.project.watch.di.WatchInjector
 import capstone.project.watch.di.WatchModule
+import timber.log.Timber
 
 class BaseApplication: Application()
 {
@@ -13,6 +14,11 @@ class BaseApplication: Application()
     override fun onCreate()
     {
         super.onCreate()
+
+        if(BuildConfig.DEBUG)
+        {
+            Timber.plant( Timber.DebugTree() )
+        }
 
         injector = DaggerWatchInjector.builder()
             .watchModule(WatchModule(this))
