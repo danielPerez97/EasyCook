@@ -1,5 +1,5 @@
 rootProject.name='Easy Cook'
 include ':app'
 include ':database'
-include ':easycookwatch'
+include ':watch'
 include ':core'

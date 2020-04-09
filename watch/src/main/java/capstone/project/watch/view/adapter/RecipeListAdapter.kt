@@ -1,10 +1,10 @@
-package capstone.project.easycookwatch.view.adapter
+package capstone.project.watch.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import capstone.project.core.ViewRecipe
-import capstone.project.easycookwatch.databinding.RecipeEntryBinding
+import capstone.project.watch.databinding.RecipeEntryBinding
 
 class RecipeListAdapter: RecyclerView.Adapter<RecipeListAdapter.ViewHolder>()
 {

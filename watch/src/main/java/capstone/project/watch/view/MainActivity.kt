@@ -1,14 +1,13 @@
-package capstone.project.easycookwatch.view
+package capstone.project.watch.view
 
 import android.content.Context
 import android.os.Bundle
 import android.support.wearable.activity.WearableActivity
 import androidx.wear.widget.WearableLinearLayoutManager
 import capstone.project.core.ViewRecipe
-import capstone.project.easycookwatch.databinding.ActivityMainBinding
-import capstone.project.easycookwatch.injector
-import capstone.project.easycookwatch.view.adapter.RecipeListAdapter
-import com.google.android.gms.wearable.Wearable
+import capstone.project.watch.databinding.ActivityMainBinding
+import capstone.project.watch.injector
+import capstone.project.watch.view.adapter.RecipeListAdapter
 import javax.inject.Inject
 
 class MainActivity : WearableActivity()

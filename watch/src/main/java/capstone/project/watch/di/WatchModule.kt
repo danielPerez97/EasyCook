@@ -1,4 +1,4 @@
-package capstone.project.easycookwatch.di
+package capstone.project.watch.di
 
 import android.content.Context
 import dagger.Module

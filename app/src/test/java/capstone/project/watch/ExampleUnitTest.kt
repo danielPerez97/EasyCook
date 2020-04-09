@@ -1,4 +1,4 @@
-package capstone.project.easycookwatch
+package capstone.project.watch
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

@@ -1,7 +1,7 @@
-package capstone.project.easycookwatch.di
+package capstone.project.watch.di
 
 import dagger.Component
-import capstone.project.easycookwatch.view.MainActivity
+import capstone.project.watch.view.MainActivity
 
 @Component(modules = [WatchModule::class])
 interface WatchInjector

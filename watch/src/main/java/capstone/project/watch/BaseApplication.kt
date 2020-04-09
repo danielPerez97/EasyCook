@@ -1,9 +1,9 @@
-package capstone.project.easycookwatch
+package capstone.project.watch
 
 import android.app.Application
-import capstone.project.easycookwatch.di.DaggerWatchInjector
-import capstone.project.easycookwatch.di.WatchInjector
-import capstone.project.easycookwatch.di.WatchModule
+import capstone.project.watch.di.DaggerWatchInjector
+import capstone.project.watch.di.WatchInjector
+import capstone.project.watch.di.WatchModule
 
 class BaseApplication: Application()
 {

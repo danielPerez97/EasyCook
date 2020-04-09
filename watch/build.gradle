@@ -49,6 +49,9 @@ dependencies {
     implementation 'androidx.wear:wear:1.0.0'
     compileOnly 'com.google.android.wearable:wearable:2.5.0'
 
+    // Google Play Services
+    implementation("com.google.android.gms:play-services-wearable:${rootProject.ext.get("playServicesWearableVersion")}")
+
     // Dagger
     implementation "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"

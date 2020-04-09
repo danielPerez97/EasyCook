@@ -1,9 +1,9 @@
 @file:JvmName("Utils")
 
-package capstone.project.easycookwatch
+package capstone.project.watch
 
 import android.support.wearable.activity.WearableActivity
-import capstone.project.easycookwatch.di.WatchInjector
+import capstone.project.watch.di.WatchInjector
 
 fun WearableActivity.injector(): WatchInjector
 {
