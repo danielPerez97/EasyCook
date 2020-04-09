@@ -22,6 +22,17 @@
             </intent-filter>
         </activity>
         <activity android:name="capstone.project.easycook.view.RecipeListActivity" />
+
+        <service android:name=".services.RecipeService">
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.MESSAGE_RECEIVED"/>
+                <data android:scheme="wear" android:host="*" android:path="/recipes"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.MESSAGE_RECEIVED"/>
+                <data android:scheme="wear" android:host="*" android:path="/steps"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

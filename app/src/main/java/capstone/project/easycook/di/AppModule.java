@@ -4,6 +4,8 @@ package capstone.project.easycook.di;
 
 import android.content.Context;
 
+import com.squareup.moshi.Moshi;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,5 +69,12 @@ public class AppModule
         steps.add(new ViewStep(1, "add salt"));
         steps.add(new ViewStep(2, "add pepper"));
         return steps;
+    }
+
+    @Provides
+    @Singleton
+    Moshi provideMoshi()
+    {
+        return new Moshi.Builder().build();
     }
 }

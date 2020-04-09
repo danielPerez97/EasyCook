@@ -2,6 +2,7 @@
 package capstone.project.easycook.di
 
 import capstone.project.easycook.di.viewmodel.ViewModelModule
+import capstone.project.easycook.services.RecipeService
 import capstone.project.easycook.view.*
 import capstone.project.easycook.view.createrecipe.CreateRecipeActivity
 import dagger.Component
@@ -19,4 +20,5 @@ interface AppInjector
     fun inject(activity: RecipeActivity)
 
     fun inject(activity: DebugActivity)
+    fun inject(recipeService: RecipeService)
 }
