@@ -10,6 +10,7 @@ import java.util.Properties;
 import java.util.stream.Collectors;
 
 import capstone.project.database.recipe.Database;
+import capstone.project.database.recipe.GetIngredients;
 import capstone.project.database.recipe.Ingredient;
 import capstone.project.database.recipe.Ingredientrecipe;
 import capstone.project.database.recipe.Recipe;
@@ -55,7 +56,7 @@ class TestRecipeBuilder
 
         // Gather the steps and the ingredients into lists
         List<Step> steps = recipeQueries.selectAllRecipeSteps(boiledEggs.get_id()).executeAsList();
-        List<Ingredient> ingredients = recipeQueries.getIngredients(boiledEggs.get_id()).executeAsList();
+        List<GetIngredients> ingredients = recipeQueries.getIngredients(boiledEggs.get_id()).executeAsList();
 
         // Test the primitive is as expected
         assertEquals("Boiled Eggs", boiledEggs.getName());
@@ -64,7 +65,7 @@ class TestRecipeBuilder
 
         // Test that there are ONLY 2 ingredients per the builder
         assertEquals(2, ingredients.size());
-        List<String> ingredientNames = ingredients.stream().map(Ingredient::getItem_name).collect(Collectors.toList());
+        List<String> ingredientNames = ingredients.stream().map(GetIngredients::getItem_name).collect(Collectors.toList());
         assertTrue(ingredientNames.contains("Eggs"));
         assertTrue(ingredientNames.contains("Water"));
 
