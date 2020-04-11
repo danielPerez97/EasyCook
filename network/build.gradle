@@ -8,6 +8,7 @@ dependencies {
     // Dagger
     implementation "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
+    kaptTest "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
 
     // OkHttp
     implementation("com.squareup.okhttp3:okhttp:$rootProject.ext.okHttpVersion")
@@ -18,6 +19,8 @@ dependencies {
 
     // Moshi
     implementation("com.squareup.moshi:moshi:$rootProject.ext.moshiVersion")
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:$rootProject.ext.moshiVersion")
+    implementation("com.squareup.retrofit2:converter-moshi:$rootProject.ext.retrofitVersion")
 
     // RxJava
     implementation("io.reactivex.rxjava2:rxjava:$rootProject.ext.rxJavaVersion")
@@ -31,6 +34,10 @@ compileTestKotlin {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+}
+
+kapt {
+    generateStubs = true
 }
 
 sourceCompatibility = "8"

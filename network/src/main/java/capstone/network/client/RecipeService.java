@@ -14,18 +14,18 @@ import retrofit2.http.Path;
 public interface RecipeService
 {
     @GET("/")
-    List<Recipe> getAllRecipes();
+    Observable<List<Recipe>> getAllRecipes();
 
     @GET("/{id}")
-    Recipe getRecipeId(@Path("id") long id);
+    Observable<Recipe> getRecipeId(@Path("id") long id);
 
     @POST("/")
-    Recipe postRecipe(@Body Recipe recipe);
+    Observable<Recipe> postRecipe(@Body Recipe recipe);
 
     @DELETE("/{id}")
-    int deleteRecipe(@Path("id") long id);
+    Completable deleteRecipe(@Path("id") long id);
 
     @PUT("/")
-    Recipe updateRecipe(@Body Recipe recipe);
+    Observable<Recipe> updateRecipe(@Body Recipe recipe);
 
 }
