@@ -12,4 +12,5 @@ CREATE TABLE step(
 insertOrReplaceSteps:
 INSERT OR REPLACE INTO step(r_id, step_number, description, sub_recipe_id) VALUES (?,?,?,?);
 
-
+getStepsFromRecipeId:
+SELECT * FROM step WHERE r_id = (?);
