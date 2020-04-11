@@ -9,9 +9,6 @@ import retrofit2.http.POST;
 
 public interface RecipeService
 {
-    @POST
-    Completable postRecipe(String body);
-
-    @GET
-    Observable<List<Recipe>> getRecipes();
+    @GET("/")
+    List<Recipe> getAllRecipes();
 }
