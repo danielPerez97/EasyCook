@@ -1,6 +1,7 @@
 package capstone.project.watch
 
 import android.app.Application
+import capstone.project.easycook.BuildConfig
 import capstone.project.watch.di.DaggerWatchInjector
 import capstone.project.watch.di.WatchInjector
 import capstone.project.watch.di.WatchModule

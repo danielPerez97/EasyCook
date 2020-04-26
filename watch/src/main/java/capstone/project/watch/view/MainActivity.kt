@@ -5,7 +5,7 @@ import android.support.wearable.activity.WearableActivity
 import android.view.View
 import androidx.wear.widget.WearableLinearLayoutManager
 import capstone.project.core.ViewRecipe
-import capstone.project.watch.databinding.ActivityMainBinding
+import capstone.project.easycook.databinding.ActivityMainBinding
 import capstone.project.watch.injector
 import capstone.project.watch.view.adapter.RecipeListAdapter
 import capstone.project.watch.viewmodel.MainActivityViewModel

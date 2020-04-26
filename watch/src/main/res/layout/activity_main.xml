@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.MainActivity">
+    tools:context="capstone.project.watch.view.MainActivity">
 
 
     <androidx.wear.widget.WearableRecyclerView
@@ -25,7 +25,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
-        android:src="@drawable/ic_error_outline_black_24dp"
+        android:src="@drawable/ic_error_black_24dp"
         android:visibility="gone"/>
 
 

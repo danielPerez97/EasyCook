@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import capstone.project.core.ViewRecipe
-import capstone.project.watch.databinding.RecipeEntryBinding
+import capstone.project.easycook.databinding.RecipeEntryBinding
 
 class RecipeListAdapter: RecyclerView.Adapter<RecipeListAdapter.ViewHolder>()
 {
