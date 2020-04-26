@@ -1,36 +1,36 @@
 package capstone.project.watch.view
 
+import android.content.Intent
 import android.os.Bundle
-import android.support.wearable.activity.WearableActivity
 import android.view.View
+import androidx.fragment.app.FragmentActivity
 import androidx.wear.widget.WearableLinearLayoutManager
 import capstone.project.core.ViewRecipe
 import capstone.project.easycook.databinding.ActivityMainBinding
-import capstone.project.watch.injector
+import capstone.project.watch.BaseApplication
 import capstone.project.watch.view.adapter.RecipeListAdapter
+import capstone.project.watch.view.stepslist.StepsListActivity
 import capstone.project.watch.viewmodel.MainActivityViewModel
 import capstone.project.watchsync.Request
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Consumer
+import io.reactivex.rxkotlin.plusAssign
 import timber.log.Timber
 import javax.inject.Inject
 
-class MainActivity : WearableActivity(), Consumer<Request<List<ViewRecipe>>>
+class MainActivity : FragmentActivity(), Consumer<Request<List<ViewRecipe>>>
 {
-
-    @Inject lateinit var viewModel: MainActivityViewModel
     private lateinit var binding: ActivityMainBinding
-    private val disposables = CompositeDisposable()
     private val recipeAdapter = RecipeListAdapter()
-    private var state: Request<List<ViewRecipe>> = Request.CheckingForPhone
-    private var success = false
     private var nodeId: String? = null
-
-
+    private val disposables = CompositeDisposable()
+    private var state: Request<List<ViewRecipe>> = Request.CheckingForPhone
+    @Inject lateinit var viewModel: MainActivityViewModel
+    private var success = false
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
-        injector().inject(this)
+        (application as BaseApplication).injector.inject(this)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -56,23 +56,30 @@ class MainActivity : WearableActivity(), Consumer<Request<List<ViewRecipe>>>
         viewModel.onResume()
     }
 
-    private fun handleRecyclerViewClicks()
+    override fun onDestroy()
     {
-//        disposables.add(recipeAdapter.clicks()
-//            .subscribe {
-//                if(nodeId != null)
-//                {
-//                    val intent = Intent(this, StepsListActivity::class.java)
-//                    intent.putExtra("RECIPE_ID", it.recipeId)
-//                    intent.putExtra("NODE_ID", nodeId)
-//                    startActivity(intent)
-//                }
-//            })
+        super.onDestroy()
+        disposables.dispose()
     }
 
     private fun checkIfPhoneHasRecipes()
     {
-        disposables.add(viewModel.recipes().subscribe(this))
+        disposables += viewModel.recipes()
+            .subscribe(this)
+    }
+
+    private fun handleRecyclerViewClicks()
+    {
+        disposables += recipeAdapter.clicks()
+            .subscribe {
+                if(nodeId != null)
+                {
+                    val intent = Intent(this, StepsListActivity::class.java)
+                    intent.putExtra("RECIPE_ID", it.recipeId)
+                    intent.putExtra("NODE_ID", nodeId)
+                    startActivity(intent)
+                }
+            }
     }
 
     override fun accept(result: Request<List<ViewRecipe>>)
@@ -120,12 +127,12 @@ class MainActivity : WearableActivity(), Consumer<Request<List<ViewRecipe>>>
             }
             is Request.Failure ->
             {
-                Timber.e(result.throwable)
                 binding.recipeList.visibility = View.GONE
                 binding.progressSpinner.visibility = View.GONE
                 binding.failureImage.visibility = View.VISIBLE
                 result
             }
         }
+
     }
 }

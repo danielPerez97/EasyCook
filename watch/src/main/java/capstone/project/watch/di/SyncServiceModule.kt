@@ -1,8 +1,8 @@
 package capstone.project.watch.di
 
 import android.content.Context
-import capstone.project.watchsync.SyncService
-import capstone.project.watchsync.SyncServiceImpl
+import capstone.project.watch.sync.SyncService
+import capstone.project.watch.sync.SyncServiceImpl
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides

@@ -27,6 +27,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":core"))
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -44,6 +46,8 @@ dependencies {
 
     // RxJava
     implementation("io.reactivex.rxjava2:rxjava:${rootProject.ext.get("rxJavaVersion")}")
+    implementation("io.reactivex.rxjava2:rxkotlin:2.4.0")
+    implementation("com.jakewharton.rxbinding3:rxbinding:$rootProject.ext.rxBindingVersion")
 
     // Timber
     implementation("com.jakewharton.timber:timber:4.7.1")

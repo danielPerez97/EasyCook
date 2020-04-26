@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion = 29
@@ -17,6 +18,13 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+
+    implementation("com.squareup.moshi:moshi:$rootProject.ext.moshiVersion")
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:$rootProject.ext.moshiVersion")
+
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
+
+
 }
 
 sourceCompatibility = "8"

@@ -1,8 +1,10 @@
-package capstone.project.watchsync
+package capstone.project.watch.sync
 
-import capstone.project.watchsync.model.SyncRecipe
-import capstone.project.watchsync.model.SyncStep
-import capstone.project.watchsync.model.SyncStepRequest
+import capstone.project.core.sync.SyncRecipe
+import capstone.project.core.sync.SyncStep
+import capstone.project.core.sync.SyncStepRequest
+import capstone.project.watchsync.AvailabilityResult
+
 import io.reactivex.Observable
 
 interface SyncService

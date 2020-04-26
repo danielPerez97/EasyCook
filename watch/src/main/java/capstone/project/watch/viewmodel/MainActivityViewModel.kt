@@ -1,10 +1,10 @@
 package capstone.project.watch.viewmodel
 
 import capstone.project.core.ViewRecipe
+import capstone.project.core.sync.SyncRecipe
 import capstone.project.watchsync.AvailabilityResult
 import capstone.project.watchsync.Request
-import capstone.project.watchsync.SyncService
-import capstone.project.watchsync.model.SyncRecipe
+import capstone.project.watch.sync.SyncService
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

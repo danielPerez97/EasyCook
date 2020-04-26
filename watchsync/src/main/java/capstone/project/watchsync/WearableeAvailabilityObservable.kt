@@ -1,7 +1,6 @@
-package capstone.project.watchsync.internal
+package capstone.project.watchsync
 
-import capstone.project.watchsync.AvailabilityResult
-import capstone.project.watchsync.capabilities.ACQUIRE_LIST_RECIPES
+import capstone.project.core.ACQUIRE_LIST_RECIPES
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.gms.wearable.CapabilityClient
@@ -10,7 +9,12 @@ import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 
-internal fun CapabilityClient.capabilityAvailable(): Observable<AvailabilityResult>
+/**
+ * Returns an Observable that signals true if the capability is available from the phone.
+ * @return Observable<AvailabilityResult>. Sealed class to tell you the state of the Capabilities availability
+ * with data attached.
+ */
+fun CapabilityClient.capabilityAvailable(): Observable<AvailabilityResult>
 {
     return WearableAvailabilityObservable(this)
 }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.wear.widget.BoxInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical"
+    android:padding="25dp"
+    app:boxedEdges="all">
+
+    <ProgressBar
+        android:id="@+id/progress_spinner"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:visibility="visible"/>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/steps_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/failure_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_error_black_24dp"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+
+</androidx.wear.widget.BoxInsetLayout>

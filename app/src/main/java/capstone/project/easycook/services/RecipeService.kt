@@ -1,13 +1,13 @@
 package capstone.project.easycook.services
 
+import capstone.project.core.ACQUIRE_LIST_RECIPES
+import capstone.project.core.ACQUIRE_LIST_STEPS
+import capstone.project.core.sync.SyncRecipe
+import capstone.project.core.sync.SyncStep
+import capstone.project.core.sync.SyncStepRequest
+import capstone.project.core.sync.SyncStepRequestJsonAdapter
 import capstone.project.database.recipe.Database
 import capstone.project.easycook.BaseApplication
-import capstone.project.watchsync.capabilities.ACQUIRE_LIST_RECIPES
-import capstone.project.watchsync.capabilities.ACQUIRE_LIST_STEPS
-import capstone.project.watchsync.model.SyncRecipe
-import capstone.project.watchsync.model.SyncStep
-import capstone.project.watchsync.model.SyncStepRequest
-import capstone.project.watchsync.model.SyncStepRequestJsonAdapter
 import com.google.android.gms.wearable.MessageEvent
 import com.google.android.gms.wearable.Wearable
 import com.google.android.gms.wearable.WearableListenerService

@@ -32,7 +32,7 @@ public class RecipeViewModel extends ViewModel
     {
 
         return RxQuery.mapToOneNonNull(RxQuery.toObservable(database.getRecipeQueries().selectById(id), Schedulers.io()))
-                .map(recipe -> new ViewRecipe(recipe.get_id(), recipe.getName()));
+                .map(recipe -> new ViewRecipe(recipe.get_id(), recipe.getName(), recipe.getDescription()));
     }
 
     public Observable<List<ViewStep>> getSteps(long recipeId)

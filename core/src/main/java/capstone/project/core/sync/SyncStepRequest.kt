@@ -1,4 +1,4 @@
-package capstone.project.watchsync.model
+package capstone.project.core.sync
 
 import com.squareup.moshi.JsonClass
 

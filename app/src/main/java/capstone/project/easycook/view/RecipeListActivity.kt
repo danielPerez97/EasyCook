@@ -66,7 +66,7 @@ class RecipeListActivity : AppCompatActivity()
 
         disposables.add(viewAdapter.clicks()
             .subscribe{
-                  startRecipeActivity(it.id)
+                  startRecipeActivity(it.recipeId)
             })
     }
 

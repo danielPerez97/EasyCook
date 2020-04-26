@@ -49,7 +49,7 @@ class RecipeListAdapter: RecyclerView.Adapter<RecipeListAdapter.ViewHolder>()
     {
         fun bind(recipe: ViewRecipe)
         {
-            binding.entryRecipeName.text = recipe.name
+            binding.entryRecipeName.text = recipe.recipeName
 
             binding.root.setOnClickListener { clickSubject.onNext(recipe) }
         }

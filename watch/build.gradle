@@ -40,18 +40,23 @@ dependencies {
     implementation project(":core")
     implementation project(":watchsync")
 
+    compileOnly "com.google.android.wearable:wearable:2.5.0"
+    implementation 'com.google.android.support:wearable:2.5.0'
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    implementation 'com.google.android.support:wearable:2.5.0'
-    implementation 'com.google.android.gms:play-services-wearable:17.0.0'
     implementation 'androidx.percentlayout:percentlayout:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.wear:wear:1.0.0'
-    compileOnly 'com.google.android.wearable:wearable:2.5.0'
+    implementation("androidx.appcompat:appcompat:1.1.0")
+
+    implementation 'com.google.android.gms:play-services-wearable:17.0.0'
 
     // Google Play Services
     implementation("com.google.android.gms:play-services-wearable:${rootProject.ext.get("playServicesWearableVersion")}")
+
+    // RecyclerView
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
     // Dagger
     implementation "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
@@ -60,11 +65,20 @@ dependencies {
     // RxJava
     implementation("io.reactivex.rxjava2:rxjava:${rootProject.ext.get("rxJavaVersion")}")
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxAndroidVersion"
+    implementation("com.jakewharton.rxbinding3:rxbinding:$rxBindingVersion")
+    implementation("io.reactivex.rxjava2:rxkotlin:2.4.0")
 
     // Timber
     implementation("com.jakewharton.timber:timber:4.7.1")
 
     // Moshi
     implementation("com.squareup.moshi:moshi:$rootProject.ext.moshiVersion")
+
+    // ViewPager2
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
+
+    // Lifecyclee
+    implementation "android.arch.lifecycle:extensions:1.1.0"
+    implementation "android.arch.lifecycle:viewmodel:1.1.0"
 
 }
