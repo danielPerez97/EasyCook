@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Easy Cook</string>
     <string name="insert_dummy_recipes">Insert Dummy Recipes</string>
+
+    <string-array name="selections_array">
+        <item>Breakfast</item>
+        <item>Lunch</item>
+        <item>Dinner</item>
+        <item>Dessert</item>
+    </string-array>
 </resources>
